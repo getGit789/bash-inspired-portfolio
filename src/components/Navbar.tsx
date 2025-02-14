@@ -16,9 +16,7 @@ const Navbar = () => {
   ];
 
   const socialLinks = [
-    { label: 'YouTube', path: 'https://youtube.com', className: 'hover:text-red-500' },
     { label: 'LinkedIn', path: 'https://linkedin.com', className: 'hover:text-blue-500' },
-    { label: 'Twitch', path: 'https://twitch.tv', className: 'hover:text-purple-500' },
     { label: 'Twitter', path: 'https://twitter.com', className: 'hover:text-blue-400' },
     { label: 'GitHub', path: 'https://github.com', className: 'hover:text-gray-400' },
   ];
@@ -29,7 +27,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
             <Link to="/" className="text-terminal-light text-lg font-bold hover:text-terminal-accent transition-colors">
-              {'>'} Portfolio
+              {'>'} Damir Kranjcevic
             </Link>
           </div>
 
