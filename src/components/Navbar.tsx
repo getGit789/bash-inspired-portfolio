@@ -7,7 +7,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navigationItems = [
-    { label: 'Who am i', path: '/about' },
+    { label: 'Who am i', path: '/' },
     { label: 'Projects', path: '/projects' },
     { label: 'Experience', path: '/experience' },
     { label: 'Certs', path: '/certifications' },
