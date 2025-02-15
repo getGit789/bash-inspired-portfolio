@@ -6,27 +6,15 @@ import { GraduationCap, Calendar } from "lucide-react";
 const Education = () => {
   const education = [
     {
-      degree: "Master of Science in Computer Science",
-      school: "Technical University",
-      period: "2018 - 2020",
-      location: "City, Country",
-      description: "Specialized in Artificial Intelligence and Machine Learning",
+      degree: "Bachelor of Science in Sport and Management",
+      school: "Faculty of Sport and Psychology, TIMS",
+      period: "2006 - 2009",
+      location: "Novi Sad, Serbia",
+      description: "Specialized in Sport and Management",
       achievements: [
         "Graduated with Honors",
-        "Published research paper on Deep Learning",
-        "Led student AI research group"
-      ]
-    },
-    {
-      degree: "Bachelor of Engineering in Software Engineering",
-      school: "State University",
-      period: "2014 - 2018",
-      location: "City, Country",
-      description: "Focus on Software Development and System Design",
-      achievements: [
-        "Dean's List all semesters",
-        "Best Final Year Project Award",
-        "Software Development Club President"
+        "Conducted research on sports management strategies",
+        "Actively participated in student sports events and leadership programs"
       ]
     }
   ];
@@ -45,7 +33,7 @@ const Education = () => {
               Education
             </h1>
             <p className="text-terminal-light/80 max-w-2xl mx-auto">
-              My academic journey and achievements in technology and computer science.
+              My academic journey and achievements in sports management.
             </p>
           </div>
 
