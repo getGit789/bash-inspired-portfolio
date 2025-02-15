@@ -1,49 +1,34 @@
 
 import Navbar from "../components/Navbar";
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
-import { Code, Server, Database, Terminal } from "lucide-react";
+import { Laptop, Server, Wrench, Code, Globe } from "lucide-react";
 
 const Skills = () => {
   const skillCategories = [
     {
-      title: "Frontend Development",
-      icon: Code,
-      skills: [
-        { name: "React", level: 90 },
-        { name: "TypeScript", level: 85 },
-        { name: "Next.js", level: 80 },
-        { name: "Tailwind CSS", level: 90 }
-      ]
+      title: "Operating Systems",
+      icon: Laptop,
+      skills: ["Windows (Desktop/Server)", "Linux", "macOS", "iOS", "Android"]
     },
     {
-      title: "Backend Development",
+      title: "Infrastructure",
       icon: Server,
-      skills: [
-        { name: "Node.js", level: 85 },
-        { name: "Python", level: 80 },
-        { name: "Express", level: 85 },
-        { name: "FastAPI", level: 75 }
-      ]
+      skills: ["Active Directory", "DHCP", "DNS"]
     },
     {
-      title: "Database",
-      icon: Database,
-      skills: [
-        { name: "PostgreSQL", level: 85 },
-        { name: "MongoDB", level: 80 },
-        { name: "Redis", level: 75 },
-        { name: "Prisma", level: 85 }
-      ]
+      title: "Support Services",
+      icon: Wrench,
+      skills: ["Technical diagnostics", "Hardware diagnostics"]
     },
     {
-      title: "DevOps",
-      icon: Terminal,
-      skills: [
-        { name: "Docker", level: 85 },
-        { name: "Kubernetes", level: 75 },
-        { name: "AWS", level: 80 },
-        { name: "CI/CD", level: 85 }
-      ]
+      title: "Development",
+      icon: Code,
+      skills: ["JavaScript", "Data Structures", "Algorithms"]
+    },
+    {
+      title: "Languages",
+      icon: Globe,
+      skills: ["Serbian (native)", "English (advanced C1)", "Italian (basic)"]
     }
   ];
 
@@ -55,17 +40,18 @@ const Skills = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 animate-fade-in">
             <div className="bg-terminal-accent/20 inline-block px-3 py-1 rounded-full mb-4">
-              <span className="text-terminal-accent text-sm">Technologies</span>
+              <span className="text-terminal-accent text-sm">Professional Skills</span>
             </div>
             <h1 className="text-4xl font-bold text-terminal-light mb-4">
               Technical Skills
             </h1>
             <p className="text-terminal-light/80 max-w-2xl mx-auto">
-              A comprehensive overview of my technical expertise and proficiency levels.
+              Experienced IT Support Engineer with expertise in first-level technical support, system
+              diagnostics, and IT infrastructure maintenance.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skillCategories.map((category, index) => (
               <Card 
                 key={index}
@@ -79,25 +65,36 @@ const Skills = () => {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
-                    {category.skills.map((skill) => (
-                      <div key={skill.name} className="space-y-2">
-                        <div className="flex justify-between text-sm">
-                          <span className="text-terminal-light">{skill.name}</span>
-                          <span className="text-terminal-accent">{skill.level}%</span>
-                        </div>
-                        <div className="h-2 bg-terminal-light/10 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-terminal-accent rounded-full transition-all duration-500"
-                            style={{ width: `${skill.level}%` }}
-                          />
-                        </div>
-                      </div>
+                  <ul className="space-y-2">
+                    {category.skills.map((skill, idx) => (
+                      <li 
+                        key={idx} 
+                        className="flex items-center gap-2 text-terminal-light/80"
+                      >
+                        <span className="text-terminal-accent">•</span>
+                        <span>{skill}</span>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          <div className="mt-12 animate-fade-in">
+            <Card className="bg-terminal-dark border border-terminal-light/10">
+              <CardHeader>
+                <CardTitle className="text-terminal-light">Professional Summary</CardTitle>
+              </CardHeader>
+              <CardContent className="text-terminal-light/80 space-y-4">
+                <p>
+                  Experienced IT Support Engineer with expertise in first-level technical support, system
+                  diagnostics, and IT infrastructure maintenance. Proven track record in administering various
+                  platforms, network setup, and hardware troubleshooting. Multilingual professional dedicated to
+                  providing superior technical support while maintaining high customer satisfaction.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </main>
