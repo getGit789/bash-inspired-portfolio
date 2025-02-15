@@ -46,8 +46,7 @@ const Skills = () => {
               Technical Skills
             </h1>
             <p className="text-terminal-light/80 max-w-2xl mx-auto">
-              Experienced IT Support Engineer with expertise in first-level technical support, system
-              diagnostics, and IT infrastructure maintenance.
+              A comprehensive overview of my technical expertise and capabilities.
             </p>
           </div>
 
@@ -79,22 +78,6 @@ const Skills = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
-
-          <div className="mt-12 animate-fade-in">
-            <Card className="bg-terminal-dark border border-terminal-light/10">
-              <CardHeader>
-                <CardTitle className="text-terminal-light">Professional Summary</CardTitle>
-              </CardHeader>
-              <CardContent className="text-terminal-light/80 space-y-4">
-                <p>
-                  Experienced IT Support Engineer with expertise in first-level technical support, system
-                  diagnostics, and IT infrastructure maintenance. Proven track record in administering various
-                  platforms, network setup, and hardware troubleshooting. Multilingual professional dedicated to
-                  providing superior technical support while maintaining high customer satisfaction.
-                </p>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </main>

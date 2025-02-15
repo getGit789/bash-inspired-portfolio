@@ -6,27 +6,29 @@ import { Terminal, Calendar } from "lucide-react";
 const Experience = () => {
   const experiences = [
     {
-      title: "Senior Software Engineer",
-      company: "Tech Corp",
-      period: "2021 - Present",
-      description: "Leading development of cloud-native applications and microservices architecture",
-      technologies: ["AWS", "Kubernetes", "Node.js", "React"],
+      title: "IT Support Engineer and Trainer",
+      company: "AT&T",
+      location: "Brno, Czech Republic",
+      period: "July 2023 - January 2025",
+      description: "Provided comprehensive first-level technical support and training for internal and external users",
       responsibilities: [
-        "Architected and implemented scalable solutions",
-        "Led team of 5 developers",
-        "Reduced system latency by 40%"
+        "Provided comprehensive first-level technical support for internal and external users",
+        "Trained and mentored new employees in teams of 10 people during 14-day intensive training sessions",
+        "Diagnosed and resolved technical issues with minimal system downtime",
+        "Maintained detailed documentation in database for tracking issues and solutions",
+        "Configured and set up PC workstations, printers, and peripheral devices"
       ]
     },
     {
-      title: "Full Stack Developer",
-      company: "Digital Solutions Inc",
-      period: "2019 - 2021",
-      description: "Full-stack development of enterprise web applications",
-      technologies: ["React", "Python", "PostgreSQL", "Docker"],
+      title: "IT Support Specialist",
+      company: "Yuber",
+      location: "Novi Sad, Serbia",
+      period: "September 2012 - June 2015",
+      description: "Managed technical support operations and system administration",
       responsibilities: [
-        "Developed RESTful APIs",
-        "Implemented CI/CD pipelines",
-        "Optimized database performance"
+        "Managed technical support operations for hardware and software systems",
+        "Administered Windows systems, including user account and permission management",
+        "Contributed to network infrastructure setup and maintenance"
       ]
     }
   ];
@@ -44,10 +46,22 @@ const Experience = () => {
             <h1 className="text-4xl font-bold text-terminal-light mb-4">
               Professional Experience
             </h1>
-            <p className="text-terminal-light/80 max-w-2xl mx-auto">
-              A timeline of my professional journey and key achievements.
-            </p>
           </div>
+
+          {/* Professional Summary Card */}
+          <Card className="bg-terminal-dark border border-terminal-light/10 mb-8 animate-fade-in">
+            <CardHeader>
+              <CardTitle className="text-terminal-light">Professional Summary</CardTitle>
+            </CardHeader>
+            <CardContent className="text-terminal-light/80">
+              <p>
+                Experienced IT Support Engineer with expertise in first-level technical support, system
+                diagnostics, and IT infrastructure maintenance. Proven track record in administering various
+                platforms, network setup, and hardware troubleshooting. Multilingual professional dedicated to
+                providing superior technical support while maintaining high customer satisfaction.
+              </p>
+            </CardContent>
+          </Card>
 
           <div className="space-y-6">
             {experiences.map((exp, index) => (
@@ -58,28 +72,20 @@ const Experience = () => {
               >
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-terminal-light">{exp.title}</CardTitle>
+                    <div>
+                      <CardTitle className="text-terminal-light">{exp.title}</CardTitle>
+                      <CardDescription className="text-terminal-light/70">
+                        {exp.company} | {exp.location}
+                      </CardDescription>
+                    </div>
                     <div className="flex items-center text-terminal-accent/80">
                       <Calendar size={16} className="mr-2" />
                       <span className="text-sm">{exp.period}</span>
                     </div>
                   </div>
-                  <CardDescription className="text-terminal-light/70">
-                    {exp.company}
-                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-terminal-light/80 mb-4">{exp.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {exp.technologies.map((tech) => (
-                      <span 
-                        key={tech}
-                        className="text-xs px-2 py-1 rounded-full bg-terminal-accent/10 text-terminal-accent"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
                   <ul className="space-y-2">
                     {exp.responsibilities.map((resp, idx) => (
                       <li key={idx} className="flex items-start gap-2 text-terminal-light/80">
@@ -99,3 +105,4 @@ const Experience = () => {
 };
 
 export default Experience;
+
