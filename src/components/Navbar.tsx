@@ -7,12 +7,13 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navigationItems = [
-    { label: 'Who am I', path: '/' },
+    { label: 'Me', path: '/' },
     { label: 'Projects', path: '/projects' },
     { label: 'Experience', path: '/experience' },
     { label: 'Certs', path: '/certifications' },
     { label: 'Skills', path: '/skills' },
     { label: 'Education', path: '/education' },
+    { label: 'Contact', path: '/contact' }
   ];
 
   const socialLinks = [
@@ -44,7 +45,7 @@ const Navbar = () => {
             <a
               href="/resume.pdf"
               download
-              className="bg-terminal-accent text-terminal-dark px-4 py-2 mt-1 rounded hover:bg-opacity-90 transition-all inline-block"
+              className="bg-terminal-accent text-terminal-dark px-3 py-1.5 rounded hover:bg-opacity-90 transition-all inline-flex items-center justify-center text-sm min-w-[120px]"
             >
               Download Resume
             </a>

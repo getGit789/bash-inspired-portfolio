@@ -11,6 +11,7 @@ import Certifications from "./pages/Certifications";
 import Skills from "./pages/Skills";
 import Education from "./pages/Education";
 import NotFound from "./pages/NotFound";
+import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/certifications" element={<Certifications />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/education" element={<Education />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

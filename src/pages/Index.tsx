@@ -52,9 +52,12 @@ const Index = () => {
               >
                 View Projects
               </Link>
-              <button className="border border-terminal-accent text-terminal-accent px-6 py-3 rounded hover:bg-terminal-accent/10 transition-all">
+              <Link
+                to="/contact"
+                className="border border-terminal-accent text-terminal-accent px-6 py-3 rounded hover:bg-terminal-accent/10 transition-all"
+              >
                 Contact Me
-              </button>
+              </Link>
             </div>
           </div>
 
