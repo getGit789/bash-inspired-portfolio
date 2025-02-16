@@ -7,7 +7,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navigationItems = [
-    { label: 'Who am i', path: '/' },
+    { label: 'Who am I', path: '/' },
     { label: 'Projects', path: '/projects' },
     { label: 'Experience', path: '/experience' },
     { label: 'Certs', path: '/certifications' },
@@ -16,9 +16,8 @@ const Navbar = () => {
   ];
 
   const socialLinks = [
-    { label: 'LinkedIn', path: 'https://linkedin.com', className: 'hover:text-blue-500' },
-    { label: 'Twitter', path: 'https://twitter.com', className: 'hover:text-blue-400' },
-    { label: 'GitHub', path: 'https://github.com', className: 'hover:text-gray-400' },
+    { label: 'LinkedIn', path: 'https://www.linkedin.com/in/damir-kranjcevic-613825200/', className: 'hover:text-blue-500' },
+    { label: 'GitHub', path: 'https://github.com/GetGit789', className: 'hover:text-gray-400' },
   ];
 
   return (
@@ -42,9 +41,13 @@ const Navbar = () => {
                 {item.label}
               </Link>
             ))}
-            <button className="bg-terminal-accent text-terminal-dark px-4 py-2 rounded hover:bg-opacity-90 transition-all">
+            <a
+              href="/resume.pdf"
+              download
+              className="bg-terminal-accent text-terminal-dark px-4 py-2 mt-1 rounded hover:bg-opacity-90 transition-all inline-block"
+            >
               Download Resume
-            </button>
+            </a>
             <div className="flex items-center space-x-4 ml-4">
               {socialLinks.map((link) => (
                 <a

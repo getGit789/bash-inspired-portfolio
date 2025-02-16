@@ -8,7 +8,7 @@ const Skills = () => {
     {
       title: "Operating Systems",
       icon: Laptop,
-      skills: ["Windows (Desktop/Server)", "Linux", "macOS", "iOS", "Android"]
+      skills: ["Windows (Desktop/Server)", "Linux (Desktop/Server)", "macOS", "iOS", "Android"]
     },
     {
       title: "Infrastructure",
@@ -18,12 +18,12 @@ const Skills = () => {
     {
       title: "Support Services",
       icon: Wrench,
-      skills: ["Technical diagnostics", "Hardware diagnostics"]
+      skills: ["Technical support", "Technical diagnostics", "Hardware diagnostics", "Computer Assembly", "Device Repair"]
     },
     {
       title: "Development",
       icon: Code,
-      skills: ["JavaScript", "Data Structures", "Algorithms"]
+      skills: ["JavaScript", "Node.js","Python", "SQL fundamentals", "Database Administration"]
     },
     {
       title: "Languages",

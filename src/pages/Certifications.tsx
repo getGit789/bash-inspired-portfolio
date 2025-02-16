@@ -6,20 +6,20 @@ import { Award, ExternalLink } from "lucide-react";
 const Certifications = () => {
   const certifications = [
     {
-      title: "AWS Solutions Architect",
-      organization: "Amazon Web Services",
-      date: "2023",
-      description: "Professional certification for designing distributed systems on AWS",
-      credentialId: "AWS-SAP-123456",
-      link: "https://aws.amazon.com"
+      title: "JavaScript",
+      organization: "freecodecamp.org",
+      date: "2022",
+      description: "JavaScript Algorithms and Data Structures",
+      credentialId: "FCD-197985",
+      link: "https://www.freecodecamp.org/certification/GetGit789/javascript-algorithms-and-data-structures"
     },
     {
-      title: "Professional Scrum Master",
-      organization: "Scrum.org",
-      date: "2022",
-      description: "Professional certification in Agile methodologies and Scrum framework",
-      credentialId: "PSM-123456",
-      link: "https://scrum.org"
+      title: "CompTIA A+",
+      organization: "comptia.org",
+      date: "2019",
+      description: "EXAM CODES 220-1101 & 220-1102",
+      credentialId: "COMP-668028ZE",
+      link: ""
     }
   ];
 

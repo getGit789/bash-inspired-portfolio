@@ -6,33 +6,53 @@ import { Github, Terminal } from "lucide-react";
 const Projects = () => {
   const projects = [
     {
-      title: "Project Alpha",
-      description: "A full-stack application built with React and Node.js",
-      technologies: ["React", "Node.js", "MongoDB", "TypeScript"],
-      image: "/placeholder.svg",
+      title: "Real-time Chat Application",
+      description: "A modern chat application with real-time messaging, user authentication, and message history.",
+      technologies: ["Node.js", "Socket.io", "React", "MongoDB"],
+      image: "/image1.png",
       links: {
-        github: "https://github.com",
-        live: "https://project-demo.com"
+        github: "https://github.com/getGit789/pingit",
+        live: "https://realtimechatapp-57e81.web.app/"
       }
     },
     {
-      title: "Project Beta",
-      description: "Real-time chat application with WebSocket integration",
-      technologies: ["React", "Socket.io", "Express", "Redis"],
-      image: "/placeholder.svg",
+      title: "E-commerce Dashboard",
+      description: "Admin dashboard for managing products, orders, and customer data with analytics.",
+      technologies: ["Next.js", "TypeScript", "React", "Redux"],
+      image: "/image2.png",
       links: {
-        github: "https://github.com",
-        live: "https://project-demo.com"
+        github: "https://github.com/getGit789/ecommerce",
+        live: "https://fidlygrid-ce08b.web.app/"
       }
     },
     {
-      title: "Project Gamma",
-      description: "E-commerce platform with payment integration",
-      technologies: ["Next.js", "Stripe", "PostgreSQL", "Prisma"],
-      image: "/placeholder.svg",
+      title: "Weather Application",
+      description: "Weather forecast app with location search and detailed weather information.",
+      technologies: ["JavaScript", "OpenWeather API", "HTML", "CSS"],
+      image: "/image3.png",
       links: {
-        github: "https://github.com",
-        live: "https://project-demo.com"
+        github: "https://github.com/getGit789/weather",
+        live: "https://getgit789.github.io/weather/"
+      }
+    },
+    {
+      title: "Note-Taking Application",
+      description: "A modern task management app featuring a Pomodoro timer, drag-and-drop interface, task prioritization, real-time updates",
+      technologies: ["React.js", "Node.js", "PostgreSQL", "Tailwind CSS", "Vite"],
+      image: "/image4.png",
+      links: {
+        github: "https://github.com/getGit789/notenook",
+        live: "https://notenook.up.railway.app/"
+      }
+    },
+    {
+      title: "Resume Builder",
+      description: "AI-powered Resume Builder in Next.js with customizable themes and dynamic components.",
+      technologies: ["Next.js", "React", "OpenAI", "TailwindCSS", "TypeScript"],
+      image: "coming-soon",
+      links: {
+        github: "#",
+        live: "#"
       }
     }
   ];
@@ -62,12 +82,18 @@ const Projects = () => {
                 className="bg-terminal-dark border border-terminal-light/10 hover:border-terminal-accent/50 transition-all duration-300 animate-fade-in"
                 style={{ animationDelay: `${index * 150}ms` }}
               >
-                <div className="aspect-video overflow-hidden rounded-t-lg">
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="w-full h-full object-cover"
-                  />
+                <div className="aspect-video overflow-hidden rounded-t-lg relative">
+                  {project.image === "coming-soon" ? (
+                    <div className="w-full h-full bg-terminal-dark/80 flex items-center justify-center border border-terminal-light/10">
+                      <span className="text-terminal-light/50 font-semibold text-lg">Coming Soon...</span>
+                    </div>
+                  ) : (
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover"
+                    />
+                  )}
                 </div>
                 <CardHeader>
                   <CardTitle className="text-terminal-light">{project.title}</CardTitle>
@@ -91,7 +117,8 @@ const Projects = () => {
                       href={project.links.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-terminal-light hover:text-terminal-accent transition-colors"
+                      className={`flex items-center gap-2 ${project.links.github === '#' ? 'text-terminal-light/50 cursor-not-allowed' : 'text-terminal-light hover:text-terminal-accent'} transition-colors`}
+                      onClick={(e) => project.links.github === '#' && e.preventDefault()}
                     >
                       <Github size={16} />
                       <span>Code</span>
@@ -100,7 +127,8 @@ const Projects = () => {
                       href={project.links.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-terminal-light hover:text-terminal-accent transition-colors"
+                      className={`flex items-center gap-2 ${project.links.live === '#' ? 'text-terminal-light/50 cursor-not-allowed' : 'text-terminal-light hover:text-terminal-accent'} transition-colors`}
+                      onClick={(e) => project.links.live === '#' && e.preventDefault()}
                     >
                       <Terminal size={16} />
                       <span>Demo</span>
