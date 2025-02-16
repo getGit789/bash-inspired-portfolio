@@ -1,5 +1,5 @@
-
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 import { Server, Cloud, Code, Lock } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
@@ -28,7 +28,7 @@ const Index = () => {
               </div>
               
               <div className="w-full md:w-1/2 animate-fade-in-slow">
-                <div className="aspect-[4/3] relative scale-90">
+                <div className="aspect-[4/3] relative scale-[0.775] max-w-[80%] mx-auto">
                   <img
                     src="/hero.jpg"
                     alt="A showcase of my technical expertise and passion for technology"
@@ -171,6 +171,7 @@ const Index = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };
