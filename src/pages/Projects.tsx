@@ -1,10 +1,19 @@
-
 import Navbar from "../components/Navbar";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../components/ui/card";
 import { Github, Terminal } from "lucide-react";
 
 const Projects = () => {
   const projects = [
+    {
+      title: "Python Interpreter Online",
+      description: "Modern Code Editor: Built with Monaco Editor (the same engine that powers VS Code), syntax Highlighting, Error Handling, Code Sharing, Example Code, Responsive Design",
+      technologies: ["JavaScript", "HTML/CSS", "Axios", "FastAPI (Python)"],
+      image: "/Python_Interpreter_Online.png",
+      links: {
+        github: "https://github.com/getGit789/python-interpreter-online",
+        live: "https://getgit789.github.io/python-interpreter-online/"
+      }
+    },
     {
       title: "Real-time Chat Application",
       description: "A modern chat application with real-time messaging, user authentication, and message history.",

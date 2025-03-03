@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -43,7 +42,7 @@ const Navbar = () => {
               </Link>
             ))}
             <a
-              href="/resume.pdf"
+              href="/Damir_Kranjcevic_Resume.pdf"
               download
               className="bg-terminal-accent text-terminal-dark px-3 py-1.5 rounded hover:bg-opacity-90 transition-all inline-flex items-center justify-center text-sm min-w-[120px]"
             >
@@ -103,9 +102,13 @@ const Navbar = () => {
                   </a>
                 ))}
               </div>
-              <button className="bg-terminal-accent text-terminal-dark px-4 py-2 rounded hover:bg-opacity-90 transition-all mt-4 w-full">
+              <a 
+                href="/Damir_Kranjcevic_Resume.pdf"
+                download
+                className="bg-terminal-accent text-terminal-dark px-4 py-2 rounded hover:bg-opacity-90 transition-all mt-4 w-full block text-center"
+              >
                 Download Resume
-              </button>
+              </a>
             </div>
           </div>
         )}

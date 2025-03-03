@@ -1,17 +1,35 @@
-
 import Navbar from "../components/Navbar";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../components/ui/card";
-import { Award, ExternalLink } from "lucide-react";
+import { Award, ExternalLink, Calendar, CheckCircle } from "lucide-react";
 
 const Certifications = () => {
   const certifications = [
+    {
+      title: "Google IT Automation with Python Professional Certificate",
+      organization: "Google",
+      date: "March 28th, 2025",
+      description: "Focusing on automation and Python scripting for IT operations",
+      credentialId: "Upcoming",
+      link: "",
+      scheduled: true
+    },
+    {
+      title: "CompTIA Security+",
+      organization: "comptia.org",
+      date: "Exam - September 2025",
+      description: "Focusing on Cyber Security and advanced network protection",
+      credentialId: "Upcoming",
+      link: "",
+      scheduled: true
+    },
     {
       title: "JavaScript",
       organization: "freecodecamp.org",
       date: "2022",
       description: "JavaScript Algorithms and Data Structures",
       credentialId: "FCD-197985",
-      link: "https://www.freecodecamp.org/certification/GetGit789/javascript-algorithms-and-data-structures"
+      link: "https://www.freecodecamp.org/certification/GetGit789/javascript-algorithms-and-data-structures",
+      scheduled: false
     },
     {
       title: "CompTIA A+",
@@ -19,7 +37,9 @@ const Certifications = () => {
       date: "2019",
       description: "EXAM CODES 220-1101 & 220-1102",
       credentialId: "COMP-668028ZE",
-      link: ""
+      link: "",
+      scheduled: false,
+      previouslyCertified: true
     }
   ];
 
@@ -45,12 +65,17 @@ const Certifications = () => {
             {certifications.map((cert, index) => (
               <Card 
                 key={index} 
-                className="bg-terminal-dark border border-terminal-light/10 hover:border-terminal-accent/50 transition-all duration-300 animate-fade-in"
+                className={`bg-terminal-dark border ${cert.scheduled ? 'border-terminal-accent/30' : 'border-terminal-light/10'} hover:border-terminal-accent/50 transition-all duration-300 animate-fade-in`}
                 style={{ animationDelay: `${index * 150}ms` }}
               >
                 <CardHeader>
                   <div className="flex items-start gap-4">
-                    <Award className="text-terminal-accent" size={24} />
+                    <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center">
+                      {cert.scheduled ? 
+                        <Calendar className="text-terminal-accent w-6 h-6" /> : 
+                        <Award className="text-terminal-accent w-6 h-6" />
+                      }
+                    </div>
                     <div>
                       <CardTitle className="text-terminal-light">{cert.title}</CardTitle>
                       <CardDescription className="text-terminal-light/70">
@@ -63,20 +88,30 @@ const Certifications = () => {
                   <p className="text-terminal-light/80 mb-4">{cert.description}</p>
                   <div className="flex flex-col gap-2 text-sm">
                     <div className="text-terminal-light/60">
-                      Issued: {cert.date}
+                      {cert.scheduled ? 'Scheduled: ' : 'Issued: '}{cert.date}
                     </div>
-                    <div className="text-terminal-light/60">
-                      Credential ID: {cert.credentialId}
-                    </div>
-                    <a 
-                      href={cert.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-terminal-accent hover:text-terminal-accent/80 transition-colors mt-2"
-                    >
-                      <ExternalLink size={16} />
-                      <span>Verify Credential</span>
-                    </a>
+                    {!cert.scheduled && (
+                      <div className="text-terminal-light/60">
+                        Credential ID: {cert.credentialId}
+                      </div>
+                    )}
+                    {cert.link && (
+                      <a 
+                        href={cert.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-terminal-accent hover:text-terminal-accent/80 transition-colors mt-2"
+                      >
+                        <ExternalLink size={16} />
+                        <span>Verify Credential</span>
+                      </a>
+                    )}
+                    {!cert.scheduled && !cert.link && cert.previouslyCertified && (
+                      <div className="flex items-center gap-2 text-terminal-light/60 mt-2">
+                        <CheckCircle size={16} className="text-terminal-accent/70" />
+                        <span>Previously Certified</span>
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>

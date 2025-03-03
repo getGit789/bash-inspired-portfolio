@@ -1,4 +1,3 @@
-
 import Navbar from "../components/Navbar";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../components/ui/card";
 import { Terminal, Calendar } from "lucide-react";
@@ -20,15 +19,15 @@ const Experience = () => {
       ]
     },
     {
-      title: "IT Support Specialist",
+      title: "Web Developer & IT Support",
       company: "Yuber",
       location: "Novi Sad, Serbia",
       period: "September 2012 - June 2015",
-      description: "Managed technical support operations and system administration",
+      description: "Designed websites and provided technical support for internal teams",
       responsibilities: [
-        "Managed technical support operations for hardware and software systems",
-        "Administered Windows systems, including user account and permission management",
-        "Contributed to network infrastructure setup and maintenance"
+        "Website Development: Designed and built responsive and professional websites using HTML, CSS, and JavaScript, enhancing online presence for clients",
+        "CMS Management: Worked with popular content management systems (CMS) like WordPress, performing theme customization, plugin integration, and maintenance tasks",
+        "Technical Support: Provided technical support for internal teams, resolving hardware and software issues efficiently"
       ]
     }
   ];
@@ -105,4 +104,3 @@ const Experience = () => {
 };
 
 export default Experience;
-
