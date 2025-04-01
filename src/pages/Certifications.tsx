@@ -8,10 +8,12 @@ const Certifications = () => {
       title: "Google IT Automation with Python Professional Certificate",
       organization: "Google",
       date: "March 28th, 2025",
+      newDate: "May 12th, 2025",
       description: "Focusing on automation and Python scripting for IT operations",
       credentialId: "Upcoming",
       link: "",
-      scheduled: true
+      scheduled: true,
+      failed: true
     },
     {
       title: "CompTIA Security+",
@@ -88,8 +90,21 @@ const Certifications = () => {
                   <p className="text-terminal-light/80 mb-4">{cert.description}</p>
                   <div className="flex flex-col gap-2 text-sm">
                     <div className="text-terminal-light/60">
-                      {cert.scheduled ? 'Scheduled: ' : 'Issued: '}{cert.date}
+                      {cert.scheduled ? 'Scheduled: ' : 'Issued: '}
+                      {cert.failed ? (
+                        <span>
+                          <span className="line-through text-red-400">{cert.date}</span>
+                          <span className="ml-2 text-red-400">(Failed)</span>
+                        </span>
+                      ) : (
+                        cert.date
+                      )}
                     </div>
+                    {cert.failed && cert.newDate && (
+                      <div className="text-terminal-accent">
+                        New attempt: {cert.newDate}
+                      </div>
+                    )}
                     {!cert.scheduled && (
                       <div className="text-terminal-light/60">
                         Credential ID: {cert.credentialId}

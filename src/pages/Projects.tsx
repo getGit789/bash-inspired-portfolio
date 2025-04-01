@@ -5,6 +5,16 @@ import { Github, Terminal } from "lucide-react";
 const Projects = () => {
   const projects = [
     {
+      title: "NunoReverse",
+      description: "Modern web application offering three powerful transformation tools: Text Reverser for flipping text, Image Reverser for image transformations, and AI Thought Transformer for cognitive reframing using GPT.",
+      technologies: ["React", "TypeScript", "Tailwind CSS", "OpenAI API", "Netlify Functions", "Clerk Auth", "Shadcn UI", "Framer Motion"],
+      image: "/image5.png",
+      links: {
+        github: "https://github.com/getGit789/reverse-dreamweaver",
+        live: "https://nunoreverse.netlify.app/"
+      }
+    },
+    {
       title: "Python Interpreter Online",
       description: "Modern Code Editor: Built with Monaco Editor (the same engine that powers VS Code), syntax Highlighting, Error Handling, Code Sharing, Example Code, Responsive Design",
       technologies: ["JavaScript", "HTML/CSS", "Axios", "FastAPI (Python)"],
