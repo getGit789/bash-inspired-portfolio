@@ -8,6 +8,7 @@ import { Send } from "lucide-react";
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: '',
+    email: '',
     company: '',
     message: ''
   });
@@ -27,17 +28,30 @@ const ContactForm = () => {
         },
         body: JSON.stringify({
           access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
-          from_name: formData.name,
-          company: formData.company,
-          message: formData.message,
-          subject: `New contact from ${formData.name}${formData.company ? ` (${formData.company})` : ''}`,
-          email_to: 'contact@damirkranjcevic.com'
+          name: formData.name,
+          email: formData.email,
+          subject: `New Contact from ${formData.name}${formData.company ? ` - ${formData.company}` : ''}`,
+          message: `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📬 NEW CONTACT FORM SUBMISSION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+👤 Name: ${formData.name}
+
+📧 Email: ${formData.email}
+
+${formData.company ? `🏢 Company: ${formData.company}\n\n` : ''}💬 Message:
+${formData.message}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Sent from: damirkranjcevic.com
+          `.trim()
         }),
       });
 
       if (response.ok) {
         setSubmitStatus('success');
-        setFormData({ name: '', company: '', message: '' });
+        setFormData({ name: '', email: '', company: '', message: '' });
       } else {
         setSubmitStatus('error');
       }
@@ -58,6 +72,16 @@ const ContactForm = () => {
               placeholder="Name"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              required
+              className="bg-terminal-dark border-terminal-light/20 text-terminal-light placeholder:text-terminal-light/50"
+            />
+          </div>
+          <div>
+            <Input
+              type="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               required
               className="bg-terminal-dark border-terminal-light/20 text-terminal-light placeholder:text-terminal-light/50"
             />
