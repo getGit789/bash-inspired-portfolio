@@ -12,17 +12,19 @@ const Certifications = () => {
       description: "Focusing on automation and Python scripting for IT operations",
       credentialId: "Upcoming",
       link: "",
-      scheduled: true,
+      scheduled: false,
       failed: true
     },
     {
       title: "CompTIA Security+",
       organization: "comptia.org",
       date: "Exam - September 2025",
+      newDate: "Exam - May 2026",
       description: "Focusing on Cyber Security and advanced network protection",
       credentialId: "Upcoming",
       link: "",
-      scheduled: true
+      scheduled: true,
+      postponed: true
     },
     {
       title: "JavaScript",
@@ -67,7 +69,7 @@ const Certifications = () => {
             {certifications.map((cert, index) => (
               <Card 
                 key={index} 
-                className={`bg-terminal-dark border ${cert.scheduled ? 'border-terminal-accent/30' : 'border-terminal-light/10'} hover:border-terminal-accent/50 transition-all duration-300 animate-fade-in`}
+                className="bg-terminal-dark border border-terminal-light/10 hover:border-terminal-accent/50 transition-all duration-300 animate-fade-in"
                 style={{ animationDelay: `${index * 150}ms` }}
               >
                 <CardHeader>
@@ -90,22 +92,38 @@ const Certifications = () => {
                   <p className="text-terminal-light/80 mb-4">{cert.description}</p>
                   <div className="flex flex-col gap-2 text-sm">
                     <div className="text-terminal-light/60">
-                      {cert.scheduled ? 'Scheduled: ' : 'Issued: '}
+                      {cert.failed || cert.scheduled ? 'Scheduled: ' : 'Issued: '}
                       {cert.failed ? (
                         <span>
                           <span className="line-through text-red-400">{cert.date}</span>
                           <span className="ml-2 text-red-400">(Failed)</span>
+                        </span>
+                      ) : cert.postponed ? (
+                        <span>
+                          <span className="line-through text-gray-400">{cert.date}</span>
+                          <span className="ml-2 text-gray-400">(Postponed)</span>
                         </span>
                       ) : (
                         cert.date
                       )}
                     </div>
                     {cert.failed && cert.newDate && (
+                      <>
+                        <div className="text-terminal-light/60">
+                          New attempt: {cert.newDate} - <span className="text-green-400">Succeed</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-terminal-light/60">
+                          <CheckCircle size={16} className="text-terminal-accent/70" />
+                          <span>Certified</span>
+                        </div>
+                      </>
+                    )}
+                    {cert.postponed && cert.newDate && (
                       <div className="text-terminal-accent">
-                        New attempt: {cert.newDate}
+                        Rescheduled: {cert.newDate}
                       </div>
                     )}
-                    {!cert.scheduled && (
+                    {!cert.scheduled && !cert.failed && (
                       <div className="text-terminal-light/60">
                         Credential ID: {cert.credentialId}
                       </div>
@@ -124,7 +142,7 @@ const Certifications = () => {
                     {!cert.scheduled && !cert.link && cert.previouslyCertified && (
                       <div className="flex items-center gap-2 text-terminal-light/60 mt-2">
                         <CheckCircle size={16} className="text-terminal-accent/70" />
-                        <span>Previously Certified</span>
+                        <span>Certified</span>
                       </div>
                     )}
                   </div>

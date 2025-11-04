@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
-import { Server, Cloud, Code, Lock } from "lucide-react";
+import { Server, Brain, Code, Lock } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
 
 const Index = () => {
@@ -123,12 +123,12 @@ const Index = () => {
               <Card className="bg-terminal-dark border border-terminal-light/10 hover:border-terminal-accent/50 transition-all duration-300">
                 <CardHeader>
                   <div className="flex items-center gap-3">
-                    <Cloud className="text-terminal-accent" size={24} />
-                    <CardTitle className="text-terminal-light">AWS Cloud Solutions</CardTitle>
+                    <Brain className="text-terminal-accent" size={24} />
+                    <CardTitle className="text-terminal-light">AI Development & Local LLM Research</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="text-terminal-light/80">
-                  Diving deep into AWS cloud infrastructure and solutions, learning to build scalable and secure cloud environments.
+                  Building intelligent systems with a focus on training, optimizing, and deploying local large-language models for privacy, performance, and innovation.
                 </CardContent>
               </Card>
 
@@ -140,7 +140,7 @@ const Index = () => {
                   </div>
                 </CardHeader>
                 <CardContent className="text-terminal-light/80">
-                  Preparing for CompTIA Security+ certification (estimated completion: May 2025), focusing on cybersecurity fundamentals.
+                  Preparing for CompTIA Security+ certification (estimated completion: May 2026), focusing on cybersecurity fundamentals.
                 </CardContent>
               </Card>
 
