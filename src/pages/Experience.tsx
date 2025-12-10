@@ -5,6 +5,31 @@ import { Terminal, Calendar } from "lucide-react";
 const Experience = () => {
   const experiences = [
     {
+      title: "System Administrator",
+      company: "Mozzartbet",
+      location: "Belgrade, Serbia",
+      period: "September 2025 – December 2025",
+      description: "Joined Mozzartbet's IT Operations team in Belgrade during a high-traffic growth period for the mozzartbet.rs platform",
+      responsibilities: [
+        "Performed daily administration, configuration, and upgrades of Linux-based servers and Tomcat application servers supporting real-time odds, live betting, and virtual sports",
+        "Monitored and maintained synchronization between central systems and betting shops/payment points across Serbia",
+        "Proactively monitored system health and implemented load balancing to ensure zero downtime during peak events (Champions League nights, NBA, tennis Grand Slams)",
+        "Diagnosed and resolved critical hardware, network, and application incidents, providing 24/7 on-call support for production environments",
+        "Strengthened data security by enforcing regular backups, access controls, and compliance with Serbian Games of Chance Administration regulations"
+      ]
+    },
+    {
+      title: "IT Support",
+      company: "TMS",
+      location: "Belgrade, Serbia",
+      period: "April 2025 – September 2025",
+      description: "Worked as a tech support for SaaS platform Trafft (trafft.com)",
+      responsibilities: [
+        "Resolved 20–30 tickets per day via email/chat-based technical support",
+        "Customized CSS for customers when website personalization was required"
+      ]
+    },
+    {
       title: "IT Support Engineer and Trainer",
       company: "AT&T",
       location: "Brno, Czech Republic",

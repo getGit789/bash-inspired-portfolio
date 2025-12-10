@@ -49,3 +49,17 @@ coverage/
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Setup and utility scripts (not needed in production)
+setup-infobip.js
+check-env.ps1
+restore-env.ps1
+.env.example-check
+
+# Documentation (optional - keep if you want, but not needed for deployment)
+# INFOBIP_SETUP.md
+# TROUBLESHOOTING.md
+# SECURITY.md
+
+# Lock files (keep package-lock.json, remove others if not using)
+bun.lockb

@@ -1,14 +1,14 @@
 
 import Navbar from "../components/Navbar";
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
-import { Laptop, Server, Wrench, Code, Globe } from "lucide-react";
+import { Laptop, Server, Wrench, Code, Globe, Cloud } from "lucide-react";
 
 const Skills = () => {
   const skillCategories = [
     {
       title: "Operating Systems",
       icon: Laptop,
-      skills: ["Windows (Desktop/Server)", "Linux (Desktop/Server)", "macOS", "iOS", "Android"]
+      skills: ["Linux (Desktop/Server)", "Windows", "macOS", "iOS", "Android"]
     },
     {
       title: "Infrastructure",
@@ -24,6 +24,22 @@ const Skills = () => {
       title: "Development",
       icon: Code,
       skills: ["JavaScript", "Node.js","Python", "SQL fundamentals", "Database Administration"]
+    },
+    {
+      title: "Cloud & HomeLab Engineering",
+      icon: Cloud,
+      skills: [
+        "Kubernetes (K8s)",
+        "K3s (lightweight Kubernetes)",
+        "Container orchestration",
+        "Infrastructure automation",
+        "Networking & VLAN segmentation",
+        "Monitoring & observability",
+        "Firewall configuration",
+        "Remote access configuration",
+        "File sharing services",
+        "Self-hosting platforms"
+      ]
     },
     {
       title: "Languages",

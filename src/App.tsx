@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
+import Why from "./pages/Why";
 import Projects from "./pages/Projects";
 import Experience from "./pages/Experience";
 import Certifications from "./pages/Certifications";
@@ -33,6 +34,7 @@ function App() {
           <RouteTracker />
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/why" element={<Why />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/experience" element={<Experience />} />
             <Route path="/certifications" element={<Certifications />} />
@@ -47,11 +49,13 @@ function App() {
   );
 }
 
-// Component to track route changes
+// Component to track route changes and scroll to top
 function RouteTracker() {
   const location = useLocation();
 
   useEffect(() => {
+    // Scroll to top when route changes
+    window.scrollTo(0, 0);
     logPageView();
   }, [location]);
 

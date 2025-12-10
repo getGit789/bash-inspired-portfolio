@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import ResumeDownloadDialog from './ResumeDownloadDialog';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDownloadDialogOpen, setIsDownloadDialogOpen] = useState(false);
 
   const navigationItems = [
-    { label: 'Me', path: '/' },
+    { label: 'Why', path: '/why' },
     { label: 'Projects', path: '/projects' },
     { label: 'Experience', path: '/experience' },
     { label: 'Certs', path: '/certifications' },
@@ -19,6 +21,36 @@ const Navbar = () => {
     { label: 'LinkedIn', path: 'https://www.linkedin.com/in/damir-kranjcevic-613825200/', className: 'hover:text-blue-500' },
     { label: 'GitHub', path: 'https://github.com/GetGit789', className: 'hover:text-gray-400' },
   ];
+
+  const handleDownloadResume = async () => {
+    try {
+      const response = await fetch('/Kranjčević_Damir_Resume.pdf');
+      
+      if (!response.ok) {
+        throw new Error(`Failed to download resume: ${response.status} ${response.statusText}`);
+      }
+      
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Kranjčević_Damir_Resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      // Silently fail in production, log in development
+      if (import.meta.env.DEV) {
+        console.error('Error downloading resume:', error);
+      }
+    }
+  };
+
+  const handleDownloadClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsDownloadDialogOpen(true);
+  };
 
   return (
     <nav className="fixed w-full bg-terminal-dark/95 backdrop-blur-sm z-50 font-mono">
@@ -42,9 +74,9 @@ const Navbar = () => {
               </Link>
             ))}
             <a
-              href="/Damir_Kranjcevic_Resume.pdf"
-              download
-              className="bg-terminal-accent text-terminal-dark px-3 py-1.5 rounded hover:bg-opacity-90 transition-all inline-flex items-center justify-center text-sm min-w-[120px]"
+              href="#"
+              onClick={handleDownloadClick}
+              className="bg-terminal-accent text-terminal-dark px-3 py-1.5 rounded hover:bg-opacity-90 transition-all inline-flex items-center justify-center text-sm min-w-[120px] cursor-pointer"
             >
               Download Resume
             </a>
@@ -103,9 +135,13 @@ const Navbar = () => {
                 ))}
               </div>
               <a 
-                href="/Damir_Kranjcevic_Resume.pdf"
-                download
-                className="bg-terminal-accent text-terminal-dark px-4 py-2 rounded hover:bg-opacity-90 transition-all mt-4 w-full block text-center"
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsDownloadDialogOpen(true);
+                  setIsOpen(false);
+                }}
+                className="bg-terminal-accent text-terminal-dark px-4 py-2 rounded hover:bg-opacity-90 transition-all mt-4 w-full block text-center cursor-pointer"
               >
                 Download Resume
               </a>
@@ -113,6 +149,11 @@ const Navbar = () => {
           </div>
         )}
       </div>
+      <ResumeDownloadDialog
+        open={isDownloadDialogOpen}
+        onOpenChange={setIsDownloadDialogOpen}
+        onDownload={handleDownloadResume}
+      />
     </nav>
   );
 };
