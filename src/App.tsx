@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import Contact from "./pages/Contact";
 import { useEffect } from "react";
 import { initGA, logPageView } from "./utils/analytics";
+import { applyPageSeo, getSeoForPath } from "./utils/seo";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +58,7 @@ function RouteTracker() {
     // Scroll to top when route changes
     window.scrollTo(0, 0);
     logPageView();
+    applyPageSeo(getSeoForPath(location.pathname));
   }, [location]);
 
   return null;

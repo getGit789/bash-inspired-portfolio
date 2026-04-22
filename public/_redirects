@@ -1,0 +1,3 @@
+# SPA: every path serves index.html with HTTP 200 (rewrite — URL stays the same).
+# Without this, /projects, /experience, etc. return 404 to crawlers and break indexing.
+/*    /index.html   200
