@@ -48,7 +48,7 @@ const Certifications = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-terminal-dark font-mono">
+    <div className="min-h-screen bg-terminal-dark font-mono overflow-x-hidden">
       <Navbar />
       
       <main className="pt-20 pb-16">
@@ -110,7 +110,7 @@ const Certifications = () => {
                     {cert.failed && cert.newDate && (
                       <>
                         <div className="text-terminal-light/60">
-                          New attempt: {cert.newDate} - <span className="text-green-400">Succeed</span>
+                          New attempt: {cert.newDate} — <span className="text-green-400">Passed</span>
                         </div>
                         <div className="flex items-center gap-2 text-terminal-light/60">
                           <CheckCircle size={16} className="text-terminal-accent/70" />

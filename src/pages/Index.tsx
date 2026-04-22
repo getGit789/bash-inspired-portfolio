@@ -34,18 +34,22 @@ const Index = () => {
                 </p>
               </div>
 
-              <div className="w-full md:w-1/2 animate-fade-in-slow">
-                <div className="aspect-[4/3] relative scale-[0.775] max-w-[80%] mx-auto">
+              <div className="w-full md:w-1/2 animate-fade-in-slow md:flex md:items-center">
+                <div className="w-full">
                   <img
-                    src="/hero.jpg"
-                    alt="A showcase of my technical expertise and passion for technology"
-                    className="w-full h-full object-contain rounded-[12px]"
+                    src="/beekio-image.png"
+                    alt="Beekio — AI SaaS landing for commercial beekeepers"
+                    className="w-full h-auto rounded-[12px] border border-terminal-light/10 shadow-lg"
                     loading="eager"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      target.parentElement!.classList.add('flex', 'items-center', 'justify-center', 'p-4', 'text-center');
-                      target.parentElement!.innerHTML = '<p class="text-terminal-light/70">Image temporarily unavailable - This space showcases visual elements representing my technical journey and expertise</p>';
+                      target.style.display = "none";
+                      const wrap = target.parentElement;
+                      if (wrap) {
+                        wrap.classList.add("flex", "items-center", "justify-center", "p-4", "text-center", "min-h-[200px]");
+                        wrap.innerHTML =
+                          '<p class="text-terminal-light/70">Image temporarily unavailable - This space showcases visual elements representing my technical journey and expertise</p>';
+                      }
                     }}
                   />
                 </div>
@@ -71,7 +75,7 @@ const Index = () => {
           {/* Current Work Section */}
           <div className="py-20 border-t border-terminal-light/10">
             <div className="text-center mb-12 animate-fade-in">
-              <div className="bg-terminal-accent/20 inline-block px-3 py-1 rounded-full mb-4">
+              <div className="bg-terminal-accent/20 inline-block px-3 py-1 rounded-full mb-4 max-w-[calc(100vw-2rem)]">
                 <span className="text-terminal-accent text-sm font-mono">$ cat ./current-project.md</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-terminal-light mb-4">
@@ -102,7 +106,7 @@ const Index = () => {
                   <div className="w-full max-w-full mb-6 md:float-left md:mr-8 md:mb-0 md:w-[45%] lg:w-[42%] xl:w-[38%] md:mt-12 animate-fade-in-slow">
                     <div className="relative rounded-[12px] overflow-hidden border border-terminal-light/10 shadow-lg mb-4">
                       <img
-                        src="/beekio.png"
+                        src="/beekio-image.png"
                         alt="Beekio — AI SaaS platform for commercial beekeepers"
                         className="w-full h-auto object-cover"
                         loading="eager"
@@ -168,7 +172,7 @@ const Index = () => {
           {/* Learning Section */}
           <div className="py-20 border-t border-terminal-light/10">
             <div className="text-center mb-12 animate-fade-in">
-              <div className="bg-terminal-accent/20 inline-block px-3 py-1 rounded-full mb-4">
+              <div className="bg-terminal-accent/20 inline-block px-3 py-1 rounded-full mb-4 max-w-[calc(100vw-2rem)]">
                 <span className="text-terminal-accent text-sm font-mono">$ tail -f ./learning.log</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-terminal-light mb-4">

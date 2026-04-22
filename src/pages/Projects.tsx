@@ -1,12 +1,12 @@
 import Navbar from "../components/Navbar";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../components/ui/card";
-import { Github, Terminal, ExternalLink } from "lucide-react";
+import { Github, Terminal, ArrowUpRight } from "lucide-react";
 
 type Project = {
   title: string;
   description: string;
   technologies: string[];
-  image: string | null; // null => terminal placeholder; set e.g. "/beekio.png" when asset is in public/
+  image: string | null; // null => terminal placeholder; set e.g. "/beekio-image.png" when asset is in public/
   placeholderLabel?: string;
   links: {
     github?: string | null;
@@ -27,7 +27,7 @@ const Projects = () => {
         "PostgreSQL", "Clerk", "Lemon Squeezy", "Cloudflare R2",
         "Railway", "OpenAI"
       ],
-      image: null,
+      image: "/beekio-image.png",
       placeholderLabel: "beekio.com",
       links: {
         // Waitlist today; switch to app subdomain when beta is public
@@ -45,10 +45,10 @@ const Projects = () => {
         "Celery", "Upstash Redis", "Claude API",
         "Tavily", "Serper", "Keepa", "Railway"
       ],
-      image: null,
-      placeholderLabel: "priceruled.com",
+      image: "/priceruled-image.png",
+      placeholderLabel: "priceruled.pages.dev",
       links: {
-        live: null, // set public demo URL here when ready; until then UI shows "Private — closed source"
+        live: "https://priceruled.pages.dev/",
         github: null,
       },
       featured: true,
@@ -58,7 +58,7 @@ const Projects = () => {
       description:
         "Direct-to-consumer e-commerce store built and operated end-to-end — storefront, payment processing, and order fulfillment workflow.",
       technologies: ["E-commerce", "Payments", "Order Fulfillment"], // refine when stack is finalized (e.g. Shopify, Medusa, custom)
-      image: null,
+      image: "/sudowear-image.png",
       placeholderLabel: "sudowear.shop",
       links: {
         live: "https://sudowear.shop",
@@ -190,10 +190,23 @@ const Projects = () => {
                         href={project.links.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-terminal-light hover:text-terminal-accent transition-colors"
+                        className="inline-flex items-center gap-1.5 text-terminal-light hover:text-terminal-accent transition-colors group"
                       >
-                        {project.featured ? <ExternalLink size={16} /> : <Terminal size={16} />}
-                        <span>{project.featured ? "Visit" : "Demo"}</span>
+                        {project.featured ? (
+                          <>
+                            <span>Visit</span>
+                            <ArrowUpRight
+                              size={18}
+                              className="shrink-0 opacity-90 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                              aria-hidden
+                            />
+                          </>
+                        ) : (
+                          <>
+                            <Terminal size={16} />
+                            <span>Demo</span>
+                          </>
+                        )}
                       </a>
                     )}
                     {!project.links.github && !project.links.live && (
