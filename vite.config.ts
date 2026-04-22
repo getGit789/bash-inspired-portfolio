@@ -9,7 +9,9 @@ export default defineConfig(({ mode }) => ({
     host: "0.0.0.0",
     port: 8080,
     strictPort: false,
-    open: true,
+    // Avoid spawn ENOENT on Linux when `chromium-browser` is missing (common on Fedora).
+    // Open http://localhost:8080 manually, or run: BROWSER=firefox npm run dev
+    open: false,
   },
   plugins: [
     react(),

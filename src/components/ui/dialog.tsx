@@ -71,7 +71,9 @@ const DialogFooter = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
+      // Normal column order: first button on top, primary/submit last (bottom) — matches
+      // desktop row order and avoids mis-taps when flex-col-reverse put primary on top.
+      "flex flex-col gap-3 sm:flex-row sm:justify-end sm:gap-2",
       className
     )}
     {...props}

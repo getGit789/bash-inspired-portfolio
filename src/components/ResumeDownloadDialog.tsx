@@ -545,14 +545,14 @@ const ResumeDownloadDialog = ({
                 type="button"
                 variant="outline"
                 onClick={() => handleOpenChange(false)}
-                className="font-mono border-red-500/60 text-red-400 bg-terminal-dark/70 hover:bg-red-500/10"
+                className="min-h-11 w-full font-mono border-red-500/60 text-red-400 bg-terminal-dark/70 hover:bg-red-500/10 sm:w-auto"
                 disabled={isLoading}
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
-                className="bg-terminal-accent text-terminal-dark font-mono hover:bg-opacity-90 hover:text-white active:text-terminal-dark"
+                className="min-h-11 w-full bg-terminal-accent text-terminal-dark font-mono hover:bg-opacity-90 hover:text-white active:text-terminal-dark sm:w-auto"
                 disabled={
                   !verificationReady ||
                   isLoading ||
@@ -664,14 +664,14 @@ const ResumeDownloadDialog = ({
                   setVerificationCode('');
                   setError('');
                 }}
-                className="font-mono border-red-500/60 text-red-400 bg-terminal-dark/70 hover:bg-red-500/10"
+                className="min-h-11 w-full font-mono border-red-500/60 text-red-400 bg-terminal-dark/70 hover:bg-red-500/10 sm:w-auto"
                 disabled={isLoading}
               >
                 Back
               </Button>
               <Button
                 type="submit"
-                className="bg-terminal-accent text-terminal-dark font-mono hover:bg-opacity-90 hover:text-white active:text-terminal-dark"
+                className="min-h-11 w-full bg-terminal-accent text-terminal-dark font-mono hover:bg-opacity-90 hover:text-white active:text-terminal-dark sm:w-auto"
                 disabled={isLoading || verificationCode.length !== 6}
               >
                 {isLoading ? (
