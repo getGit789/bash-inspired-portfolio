@@ -13,12 +13,16 @@ dist
 dist-ssr
 *.local
 
-# Environment variables
+# Environment variables & secrets (never commit real keys)
 .env
 .env.local
+.env.development
+.env.production
 .env.development.local
 .env.test.local
 .env.production.local
+# Lokalna kopija sa pravim ključevima (šablon bez tajni: env.example.template)
+.env.example
 
 # Editor directories and files
 .vscode/*
