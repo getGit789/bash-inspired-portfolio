@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
-import { Brain, Cpu, Briefcase, GitBranch } from "lucide-react";
+import { ArrowUpRight, Brain, Cpu, Briefcase, GitBranch } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
 
 const Index = () => {
@@ -13,8 +13,8 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Hero Section */}
           <div className="flex flex-col items-center py-10 md:py-20">
-            <div className="w-full flex flex-col md:flex-row gap-8 mb-8">
-              <div className="w-full md:w-1/2 animate-fade-in">
+            <div className="w-full flex flex-col md:flex-row md:items-start gap-8 mb-8">
+              <div className="w-full md:w-1/2 min-w-0 animate-fade-in">
                 <div className="bg-terminal-accent/20 inline-block px-3 py-1 rounded-full mb-4 whitespace-nowrap">
                   <span className="text-terminal-accent text-sm font-mono">$ whoami</span>
                 </div>
@@ -34,19 +34,22 @@ const Index = () => {
                 </p>
               </div>
 
-              <div className="w-full md:w-1/2 animate-fade-in-slow md:flex md:items-center">
-                <div className="w-full">
+              <div className="w-full md:w-1/2 shrink-0 flex justify-center md:justify-start md:mt-12 animate-fade-in-slow">
+                <div className="inline-block overflow-hidden rounded-[12px] border border-terminal-light/10 shadow-lg leading-none">
                   <img
-                    src="/beekio-image.png"
-                    alt="Beekio — AI SaaS landing for commercial beekeepers"
-                    className="w-full h-auto rounded-[12px] border border-terminal-light/10 shadow-lg"
+                    src="/hero.jpg"
+                    alt="Damir Kranjčević"
+                    width={824}
+                    height={879}
+                    decoding="async"
+                    className="block h-auto max-w-full w-[min(88vw,280px)] sm:w-[min(72vw,320px)] md:w-[min(100%,360px)] lg:w-[380px]"
                     loading="eager"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.style.display = "none";
                       const wrap = target.parentElement;
                       if (wrap) {
-                        wrap.classList.add("flex", "items-center", "justify-center", "p-4", "text-center", "min-h-[200px]");
+                        wrap.classList.add("flex", "items-center", "justify-center", "p-4", "text-center", "min-h-[200px]", "w-full", "max-w-[360px]");
                         wrap.innerHTML =
                           '<p class="text-terminal-light/70">Image temporarily unavailable - This space showcases visual elements representing my technical journey and expertise</p>';
                       }
@@ -59,13 +62,13 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-md sm:max-w-none sm:w-auto items-stretch sm:items-center justify-center animate-fade-in px-2" style={{ animationDelay: "200ms" }}>
               <Link
                 to="/projects"
-                className="bg-terminal-accent text-terminal-dark px-6 py-3 rounded hover:bg-opacity-90 transition-all"
+                className="flex w-full sm:w-auto justify-center items-center text-center bg-terminal-accent text-terminal-dark px-6 py-3 rounded hover:bg-opacity-90 transition-all"
               >
                 View Projects
               </Link>
               <Link
                 to="/contact"
-                className="border border-terminal-accent text-terminal-accent px-6 py-3 rounded hover:bg-terminal-accent/10 transition-all"
+                className="flex w-full sm:w-auto justify-center items-center text-center border border-terminal-accent text-terminal-accent px-6 py-3 rounded hover:bg-terminal-accent/10 transition-all"
               >
                 Contact Me
               </Link>
@@ -103,12 +106,12 @@ const Index = () => {
                 {/* Container for image and wrapping text */}
                 <div className="relative min-w-0">
                   {/* Image - floats left on md+; stacked full-width on mobile */}
-                  <div className="w-full max-w-full mb-6 md:float-left md:mr-8 md:mb-0 md:w-[45%] lg:w-[42%] xl:w-[38%] md:mt-12 animate-fade-in-slow">
-                    <div className="relative rounded-[12px] overflow-hidden border border-terminal-light/10 shadow-lg mb-4">
+                  <div className="w-full max-w-full mb-6 md:float-left md:mr-8 md:mb-0 md:w-[45%] lg:w-[42%] xl:w-[38%] animate-fade-in-slow">
+                    <div className="relative w-full aspect-[5/4] md:aspect-[6/5] rounded-[12px] overflow-hidden border border-terminal-light/10 shadow-lg mb-4">
                       <img
-                        src="/beekio-image.png"
+                        src="/beekio-image-landing.png"
                         alt="Beekio — AI SaaS platform for commercial beekeepers"
-                        className="w-full h-auto object-cover"
+                        className="absolute inset-0 h-full w-full object-cover object-top"
                         loading="eager"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
@@ -131,6 +134,21 @@ const Index = () => {
                       <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Clerk</span>
                       <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Lemon Squeezy</span>
                       <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">OpenAI</span>
+                    </div>
+                    <div className="flex gap-4 flex-wrap mt-3">
+                      <a
+                        href="https://beekio.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-terminal-light hover:text-terminal-accent transition-colors group"
+                      >
+                        <span>Visit</span>
+                        <ArrowUpRight
+                          size={18}
+                          className="shrink-0 opacity-90 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                          aria-hidden
+                        />
+                      </a>
                     </div>
                   </div>
 
