@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Navbar from "../components/Navbar";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../components/ui/card";
 import { Github, Terminal, ArrowUpRight } from "lucide-react";
@@ -14,6 +15,9 @@ type Project = {
   };
   featured?: boolean;
 };
+
+/** Index of first “legacy” card — section header is rendered immediately before it. */
+const LEGACY_SECTION_START_INDEX = 6;
 
 const Projects = () => {
   const projects: Project[] = [
@@ -69,17 +73,14 @@ const Projects = () => {
 
     // ===== Earlier side projects =====
     {
-      title: "NunoReverse",
+      title: "Pingit",
       description:
-        "Three transformation tools in one app: Text Reverser, Image Reverser, and an AI Thought Transformer for cognitive reframing using GPT. Auth via Clerk, serverless backend on Netlify Functions.",
-      technologies: [
-        "React", "TypeScript", "Tailwind CSS", "OpenAI API",
-        "Netlify Functions", "Clerk", "Shadcn UI", "Framer Motion"
-      ],
-      image: "/image5.png",
+        "Real-time chat with messaging, authentication, and message history — Socket.io, React, and MongoDB.",
+      technologies: ["Node.js", "Socket.io", "React", "MongoDB"],
+      image: "/image1.png",
       links: {
-        github: "https://github.com/getGit789/reverse-dreamweaver",
-        live: "https://nunoreverse.netlify.app/",
+        github: "https://github.com/getGit789/pingit",
+        live: "https://realtimechatapp-57e81.web.app/",
       },
     },
     {
@@ -94,6 +95,19 @@ const Projects = () => {
       },
     },
     {
+      title: "E-commerce Dashboard",
+      description:
+        "Admin dashboard for products, orders, and customer data with analytics — Next.js and Redux.",
+      technologies: ["Next.js", "TypeScript", "React", "Redux"],
+      image: "/image2.png",
+      links: {
+        github: "https://github.com/getGit789/ecommerce",
+        live: "https://fidlygrid-ce08b.web.app/",
+      },
+    },
+
+    // ===== Legacy / earlier portfolio =====
+    {
       title: "Notenook",
       description:
         "Task management app with a Pomodoro timer, drag-and-drop interface, task prioritization, and real-time updates across sessions.",
@@ -102,6 +116,31 @@ const Projects = () => {
       links: {
         github: "https://github.com/getGit789/notenook",
         live: "https://notenook.up.railway.app/",
+      },
+    },
+    {
+      title: "NunoReverse",
+      description:
+        "Three tools in one app: Text Reverser, Image Reverser, and an AI Thought Transformer for cognitive reframing with GPT. Clerk auth and Netlify Functions backend.",
+      technologies: [
+        "React", "TypeScript", "Tailwind CSS", "OpenAI API",
+        "Netlify Functions", "Clerk", "Shadcn UI", "Framer Motion"
+      ],
+      image: "/image5.png",
+      links: {
+        github: "https://github.com/getGit789/reverse-dreamweaver",
+        live: "https://nunoreverse.netlify.app/",
+      },
+    },
+    {
+      title: "Weather Application",
+      description:
+        "Weather forecast app with location search and detailed conditions — OpenWeather API and vanilla front-end.",
+      technologies: ["JavaScript", "OpenWeather API", "HTML", "CSS"],
+      image: "/image3.png",
+      links: {
+        github: "https://github.com/getGit789/weather",
+        live: "https://getgit789.github.io/weather/",
       },
     },
   ];
@@ -120,17 +159,33 @@ const Projects = () => {
               Featured Projects
             </h1>
             <p className="text-terminal-light/80 max-w-2xl mx-auto">
-              Production SaaS products I&apos;m currently building as a solo founder, plus a few earlier side projects.
+              Production SaaS products I&apos;m currently building as a solo founder, plus side projects and a few
+              earlier builds from my portfolio archive.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
-              <Card
-                key={index}
-                className="bg-terminal-dark border border-terminal-light/10 hover:border-terminal-accent/50 transition-all duration-300 animate-fade-in flex flex-col"
-                style={{ animationDelay: `${index * 120}ms` }}
-              >
+              <Fragment key={`${project.title}-${index}`}>
+                {index === LEGACY_SECTION_START_INDEX && (
+                  <div className="col-span-full pt-6 md:pt-10 mt-2 border-t border-terminal-light/10">
+                    <div className="text-center mb-8 md:mb-10 animate-fade-in max-w-2xl mx-auto px-2">
+                      <div className="bg-terminal-accent/20 inline-block px-3 py-1 rounded-full mb-4 max-w-[calc(100vw-2rem)]">
+                        <span className="text-terminal-accent text-sm font-mono">$ ls ~/legacy</span>
+                      </div>
+                      <h2 className="text-2xl md:text-3xl font-bold text-terminal-light mb-2">
+                        Earlier portfolio projects
+                      </h2>
+                      <p className="text-terminal-light/70 text-sm md:text-base">
+                        Older demos — Notenook, NunoReverse, and a weather client — kept for context on how I got here.
+                      </p>
+                    </div>
+                  </div>
+                )}
+                <Card
+                  className="bg-terminal-dark border border-terminal-light/10 hover:border-terminal-accent/50 transition-all duration-300 animate-fade-in flex flex-col"
+                  style={{ animationDelay: `${index * 120}ms` }}
+                >
                 <div className="aspect-video overflow-hidden rounded-t-lg relative">
                   {project.image ? (
                     <img
@@ -217,6 +272,7 @@ const Projects = () => {
                   </div>
                 </CardContent>
               </Card>
+              </Fragment>
             ))}
           </div>
         </div>
