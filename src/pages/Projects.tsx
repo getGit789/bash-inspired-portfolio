@@ -1,129 +1,171 @@
 import Navbar from "../components/Navbar";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../components/ui/card";
-import { Github, Terminal } from "lucide-react";
+import { Github, Terminal, ExternalLink } from "lucide-react";
+
+type Project = {
+  title: string;
+  description: string;
+  technologies: string[];
+  image: string | null; // null => terminal placeholder; set e.g. "/beekio.png" when asset is in public/
+  placeholderLabel?: string;
+  links: {
+    github?: string | null;
+    live?: string | null;
+  };
+  featured?: boolean;
+};
 
 const Projects = () => {
-  const projects = [
+  const projects: Project[] = [
+    // ===== Featured / current production work =====
+    {
+      title: "Beekio",
+      description:
+        "AI-powered SaaS platform for commercial beekeepers. Persistent AI chat with resumable sessions, multi-tier daily usage enforcement with automated UTC resets, four-tier subscription billing, and presigned R2 image uploads. Built solo from landing page to production.",
+      technologies: [
+        "React", "TypeScript", "Vite", "FastAPI", "Python",
+        "PostgreSQL", "Clerk", "Lemon Squeezy", "Cloudflare R2",
+        "Railway", "OpenAI"
+      ],
+      image: null,
+      placeholderLabel: "beekio.com",
+      links: {
+        // Waitlist today; switch to app subdomain when beta is public
+        live: "https://beekio.com",
+        github: null,
+      },
+      featured: true,
+    },
+    {
+      title: "PriceRuled",
+      description:
+        "AI shopping verdict app with a 6-agent LLM pipeline that returns BUY / WAIT / SKIP on consumer products. Claude Haiku for classification, Sonnet for synthesis, Tavily + Serper for research, Keepa for price history. Deterministic Python scoring; LLMs only write the human-readable narrative.",
+      technologies: [
+        "React", "TypeScript", "Vite", "FastAPI",
+        "Celery", "Upstash Redis", "Claude API",
+        "Tavily", "Serper", "Keepa", "Railway"
+      ],
+      image: null,
+      placeholderLabel: "priceruled.com",
+      links: {
+        live: null, // set public demo URL here when ready; until then UI shows "Private — closed source"
+        github: null,
+      },
+      featured: true,
+    },
+    {
+      title: "Sudowear.shop",
+      description:
+        "Direct-to-consumer e-commerce store built and operated end-to-end — storefront, payment processing, and order fulfillment workflow.",
+      technologies: ["E-commerce", "Payments", "Order Fulfillment"], // refine when stack is finalized (e.g. Shopify, Medusa, custom)
+      image: null,
+      placeholderLabel: "sudowear.shop",
+      links: {
+        live: "https://sudowear.shop",
+        github: null,
+      },
+      featured: true,
+    },
+
+    // ===== Earlier side projects =====
     {
       title: "NunoReverse",
-      description: "Modern web application offering three powerful transformation tools: Text Reverser for flipping text, Image Reverser for image transformations, and AI Thought Transformer for cognitive reframing using GPT.",
-      technologies: ["React", "TypeScript", "Tailwind CSS", "OpenAI API", "Netlify Functions", "Clerk Auth", "Shadcn UI", "Framer Motion"],
+      description:
+        "Three transformation tools in one app: Text Reverser, Image Reverser, and an AI Thought Transformer for cognitive reframing using GPT. Auth via Clerk, serverless backend on Netlify Functions.",
+      technologies: [
+        "React", "TypeScript", "Tailwind CSS", "OpenAI API",
+        "Netlify Functions", "Clerk", "Shadcn UI", "Framer Motion"
+      ],
       image: "/image5.png",
       links: {
         github: "https://github.com/getGit789/reverse-dreamweaver",
-        live: "https://nunoreverse.netlify.app/"
-      }
+        live: "https://nunoreverse.netlify.app/",
+      },
     },
     {
       title: "Python Interpreter Online",
-      description: "Modern Code Editor: Built with Monaco Editor (the same engine that powers VS Code), syntax Highlighting, Error Handling, Code Sharing, Example Code, Responsive Design",
-      technologies: ["JavaScript", "HTML/CSS", "Axios", "FastAPI (Python)"],
+      description:
+        "In-browser Python code editor built on Monaco (same engine as VS Code), with syntax highlighting, error handling, code sharing, and a FastAPI backend for execution.",
+      technologies: ["JavaScript", "HTML/CSS", "Monaco Editor", "Axios", "FastAPI", "Python"],
       image: "/Python_Interpreter_Online.png",
       links: {
         github: "https://github.com/getGit789/python-interpreter-online",
-        live: "https://getgit789.github.io/python-interpreter-online/"
-      }
+        live: "https://getgit789.github.io/python-interpreter-online/",
+      },
     },
     {
-      title: "Real-time Chat Application",
-      description: "A modern chat application with real-time messaging, user authentication, and message history.",
-      technologies: ["Node.js", "Socket.io", "React", "MongoDB"],
-      image: "/image1.png",
-      links: {
-        github: "https://github.com/getGit789/pingit",
-        live: "https://realtimechatapp-57e81.web.app/"
-      }
-    },
-    {
-      title: "E-commerce Dashboard",
-      description: "Admin dashboard for managing products, orders, and customer data with analytics.",
-      technologies: ["Next.js", "TypeScript", "React", "Redux"],
-      image: "/image2.png",
-      links: {
-        github: "https://github.com/getGit789/ecommerce",
-        live: "https://fidlygrid-ce08b.web.app/"
-      }
-    },
-    {
-      title: "Weather Application",
-      description: "Weather forecast app with location search and detailed weather information.",
-      technologies: ["JavaScript", "OpenWeather API", "HTML", "CSS"],
-      image: "/image3.png",
-      links: {
-        github: "https://github.com/getGit789/weather",
-        live: "https://getgit789.github.io/weather/"
-      }
-    },
-    {
-      title: "Note-Taking Application",
-      description: "A modern task management app featuring a Pomodoro timer, drag-and-drop interface, task prioritization, real-time updates",
-      technologies: ["React.js", "Node.js", "PostgreSQL", "Tailwind CSS", "Vite"],
+      title: "Notenook",
+      description:
+        "Task management app with a Pomodoro timer, drag-and-drop interface, task prioritization, and real-time updates across sessions.",
+      technologies: ["React", "Node.js", "PostgreSQL", "Tailwind CSS", "Vite"],
       image: "/image4.png",
       links: {
         github: "https://github.com/getGit789/notenook",
-        live: "https://notenook.up.railway.app/"
-      }
+        live: "https://notenook.up.railway.app/",
+      },
     },
-    {
-      title: "Resume Builder",
-      description: "AI-powered Resume Builder in Next.js with customizable themes and dynamic components.",
-      technologies: ["Next.js", "React", "OpenAI", "TailwindCSS", "TypeScript"],
-      image: "coming-soon",
-      links: {
-        github: "#",
-        live: "#"
-      }
-    }
   ];
 
   return (
     <div className="min-h-screen bg-terminal-dark font-mono">
       <Navbar />
-      
+
       <main className="pt-20 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 animate-fade-in">
             <div className="bg-terminal-accent/20 inline-block px-3 py-1 rounded-full mb-4">
-              <span className="text-terminal-accent text-sm">My Work</span>
+              <span className="text-terminal-accent text-sm font-mono">$ ls ./projects</span>
             </div>
             <h1 className="text-4xl font-bold text-terminal-light mb-4">
               Featured Projects
             </h1>
             <p className="text-terminal-light/80 max-w-2xl mx-auto">
-              Here are some of my recent projects that showcase my skills and passion for technology.
+              Production SaaS products I&apos;m currently building as a solo founder, plus a few earlier side projects.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
-              <Card 
-                key={index} 
-                className="bg-terminal-dark border border-terminal-light/10 hover:border-terminal-accent/50 transition-all duration-300 animate-fade-in"
-                style={{ animationDelay: `${index * 150}ms` }}
+              <Card
+                key={index}
+                className="bg-terminal-dark border border-terminal-light/10 hover:border-terminal-accent/50 transition-all duration-300 animate-fade-in flex flex-col"
+                style={{ animationDelay: `${index * 120}ms` }}
               >
                 <div className="aspect-video overflow-hidden rounded-t-lg relative">
-                  {project.image === "coming-soon" ? (
-                    <div className="w-full h-full bg-terminal-dark/80 flex items-center justify-center border border-terminal-light/10">
-                      <span className="text-terminal-light/50 font-semibold text-lg">Coming Soon...</span>
-                    </div>
-                  ) : (
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
                       className="w-full h-full object-cover"
                     />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-terminal-dark via-terminal-dark to-terminal-accent/10 flex items-center justify-center border-b border-terminal-light/10">
+                      <div className="text-center px-4">
+                        <div className="text-terminal-accent/80 font-mono text-sm mb-2">$ open</div>
+                        <div className="text-terminal-light font-mono text-xl font-bold">
+                          {project.placeholderLabel ?? project.title}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {project.featured && (
+                    <span className="absolute top-2 right-2 bg-terminal-accent text-terminal-dark text-xs font-bold px-2 py-1 rounded font-mono">
+                      FEATURED
+                    </span>
                   )}
                 </div>
+
                 <CardHeader>
                   <CardTitle className="text-terminal-light">{project.title}</CardTitle>
                   <CardDescription className="text-terminal-light/70">
                     {project.description}
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+
+                <CardContent className="mt-auto">
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech) => (
-                      <span 
+                      <span
                         key={tech}
                         className="text-xs px-2 py-1 rounded-full bg-terminal-accent/10 text-terminal-accent"
                       >
@@ -131,27 +173,34 @@ const Projects = () => {
                       </span>
                     ))}
                   </div>
-                  <div className="flex gap-4">
-                    <a 
-                      href={project.links.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`flex items-center gap-2 ${project.links.github === '#' ? 'text-terminal-light/50 cursor-not-allowed' : 'text-terminal-light hover:text-terminal-accent'} transition-colors`}
-                      onClick={(e) => project.links.github === '#' && e.preventDefault()}
-                    >
-                      <Github size={16} />
-                      <span>Code</span>
-                    </a>
-                    <a 
-                      href={project.links.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`flex items-center gap-2 ${project.links.live === '#' ? 'text-terminal-light/50 cursor-not-allowed' : 'text-terminal-light hover:text-terminal-accent'} transition-colors`}
-                      onClick={(e) => project.links.live === '#' && e.preventDefault()}
-                    >
-                      <Terminal size={16} />
-                      <span>Demo</span>
-                    </a>
+                  <div className="flex gap-4 flex-wrap">
+                    {project.links.github && (
+                      <a
+                        href={project.links.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-terminal-light hover:text-terminal-accent transition-colors"
+                      >
+                        <Github size={16} />
+                        <span>Code</span>
+                      </a>
+                    )}
+                    {project.links.live && (
+                      <a
+                        href={project.links.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-terminal-light hover:text-terminal-accent transition-colors"
+                      >
+                        {project.featured ? <ExternalLink size={16} /> : <Terminal size={16} />}
+                        <span>{project.featured ? "Visit" : "Demo"}</span>
+                      </a>
+                    )}
+                    {!project.links.github && !project.links.live && (
+                      <span className="text-terminal-light/40 text-sm italic">
+                        Private — closed source
+                      </span>
+                    )}
                   </div>
                 </CardContent>
               </Card>

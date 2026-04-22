@@ -16,15 +16,22 @@ const Index = () => {
             <div className="w-full flex flex-col md:flex-row gap-8 mb-8">
               <div className="w-full md:w-1/2 animate-fade-in">
                 <div className="bg-terminal-accent/20 inline-block px-3 py-1 rounded-full mb-4 whitespace-nowrap">
-                  <span className="text-terminal-accent text-sm">Who am I</span>
+                  <span className="text-terminal-accent text-sm font-mono">$ whoami</span>
                 </div>
                 <h1 className="text-4xl md:text-6xl font-bold text-terminal-light mb-6">
-                  Obsessed with
+                  Full-Stack &amp;
                   <br />
-                  <span className="text-terminal-accent">Technology</span>
+                  <span className="text-terminal-accent">AI Engineer</span>
                 </h1>
-                <p className="text-terminal-light/80 text-lg mb-8 leading-relaxed">
-                Hello World! Welcome to my corner of the internet. I’m passionate about technology, constantly exploring innovations and building exciting projects. Join me on my journey of lifelong learning, growth, and creation. Check out my work and let's innovate together!                </p>
+                <p className="text-terminal-light/80 text-lg mb-4 leading-relaxed">
+                  Founder of <span className="text-terminal-accent">Beekio LLC</span>, building AI-powered SaaS end-to-end — FastAPI backends, React frontends, multi-agent LLM pipelines, and the production infrastructure that holds it all together.
+                </p>
+                <p className="text-terminal-light/60 text-base mb-6 leading-relaxed">
+                  Previously System Administrator at Mozzartbet and IT Support Engineer at AT&amp;T Brno. Comfortable from database schema to deployment, and debugging production at 3 a.m.
+                </p>
+                <p className="text-terminal-accent/90 text-sm mb-2 font-mono">
+                  <span className="text-terminal-light/40">{'// '}</span>Open to remote full-stack / AI engineer roles
+                </p>
               </div>
               
               <div className="w-full md:w-1/2 animate-fade-in-slow">
