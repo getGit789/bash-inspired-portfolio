@@ -1,183 +1,66 @@
-# Welcome to my portfolio  project
+# Portfolio — Damir Kranjčević
 
-## Project info
+Terminal-inspired personal site: hero, projects (featured + legacy), experience, skills, certifications, contact, resume download with optional email/SMS verification.
 
-**URL**: https://damirkranjcevic.com
+**Live:** [damirkranjcevic.com](https://damirkranjcevic.com)
 
-## How can I edit this code?
+## Stack
 
+- **Vite** + **React** + **TypeScript**
+- **Tailwind CSS** + **shadcn/ui**
+- **React Router**
+- Hosted on **Cloudflare Pages** (static `dist/`)
 
-**Use your preferred IDE**
+## Local development
 
-If you want to work locally using your own IDE, you can clone this repo and push changes.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Requires **Node.js 20+** and npm.
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+git clone https://github.com/getGit789/bash-inspired-portfolio.git
+cd bash-inspired-portfolio
+npm ci
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Environment variables
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Secrets are **not** committed. Use the committed template only:
 
-**Use GitHub Codespaces**
+1. Copy [`env.example.template`](./env.example.template) to `.env` or `.env.local`.
+2. Fill in values locally. For production, set the same keys in **Cloudflare Pages → Settings → Environment variables** (Production and Preview as needed).
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+| Prefix | Purpose |
+|--------|---------|
+| `VITE_EMAILJS_*` | Email OTP for resume download (optional) |
+| `VITE_INFOBIP_*` | SMS OTP via Infobip 2FA (optional) |
+| `VITE_WEB3FORMS_ACCESS_KEY` | Contact form + owner notifications |
+| `VITE_OWNER_EMAIL` | Where Web3Forms / notifications go |
+| `VITE_EMAIL_API_ENDPOINT` | Optional custom backend for codes |
 
-## Resume Download Verification System
+**Security:** Any `VITE_*` variable is embedded in the client bundle at build time. Treat them as **public** in the shipped site. For highly sensitive APIs, use a backend proxy (see [`SECURITY.md`](./SECURITY.md) if present).
 
-The resume download feature uses email or phone verification to track who downloads your resume. Users must provide their email or phone number and verify it with a code before downloading.
+Do **not** commit `.env`, `.env.local`, or a populated `.env.example`. Infobip **Application ID** / **Message ID** are also sensitive for abuse—keep them in env/dashboard only.
 
-### Setup Instructions:
+## Cloudflare Pages (deploy)
 
-#### Option 1: EmailJS (Recommended - Free & Easy)
+- **Build command:** `npm ci && npm run build`
+- **Output directory:** `dist`
+- If the dashboard runs `bun install` by mistake, set **`SKIP_DEPENDENCY_INSTALL=1`** and keep the build command above (see comments in `env.example.template`).
 
-1. **Sign up for EmailJS** (free tier available):
-   - Visit [EmailJS](https://www.emailjs.com/)
-   - Create a free account
-   - Verify your email
+Custom domain and DNS are configured in Cloudflare; email (e.g. Hostinger) can stay **DNS only** while web goes to Pages.
 
-2. **Set up Email Service**:
-   - Go to Email Services → Add New Service
-   - Choose Gmail, Outlook, or any email service
-   - Connect your email account
+## Project layout (high level)
 
-3. **Create Email Template**:
-   - Go to Email Templates → Create New Template
-   - Template ID: `resume_verification` (or any name)
-   - Subject: `Resume Download Verification Code`
-   - Content:
-     ```
-     Your verification code is: {{verification_code}}
-     
-     Enter this code in the download dialog to access the resume.
-     This code expires in 10 minutes.
-     ```
-   - To Email: `{{to_email}}`
-   - Save the template
+- `src/pages/` — `Index`, `Projects`, `Experience`, `Skills`, `Certifications`, `Contact`, `Why`
+- `src/components/` — shared UI, `Navbar`, resume download dialog, contact form
+- `src/utils/resumeVerification.ts` — EmailJS / Infobip / Web3Forms flows
+- `public/` — static assets, resume PDF, project screenshots
 
-4. **Get your credentials**:
-   - Service ID: Found in Email Services
-   - Template ID: Found in Email Templates
-   - Public Key: Found in Account → API Keys
+## Docs
 
-5. **Add to `.env` file**:
-   ```
-   VITE_EMAILJS_SERVICE_ID=your_service_id
-   VITE_EMAILJS_TEMPLATE_ID=your_template_id
-   VITE_EMAILJS_PUBLIC_KEY=your_public_key
-   
-   # For download notifications (using Web3Forms)
-   VITE_WEB3FORMS_ACCESS_KEY=your_web3forms_key
-   VITE_OWNER_EMAIL=your.email@example.com
-   ```
+- [`TROUBLESHOOTING.md`](./TROUBLESHOOTING.md) — env and build issues
+- [`INFOBIP_SETUP.md`](./INFOBIP_SETUP.md) — Infobip 2FA setup (placeholders only)
 
-#### Option 2: Custom API Endpoint
+## License / usage
 
-If you have your own backend API:
-```
-VITE_EMAIL_API_ENDPOINT=https://your-api.com/send-verification-code
-```
-
-6. Restart the development server for changes to take effect
-
-#### Option 3: Phone Verification with Infobip (SMS OTP)
-
-1. **Set up Infobip Account**:
-   - Log in to [Infobip Portal](https://portal.infobip.com/homepage)
-   - Navigate to **API Key Management** to create a new API key
-   - Note your **Base URL** (typically `https://[your-region].api.infobip.com` or `https://api.infobip.com`)
-
-2. **Create a 2FA Application**:
-   - In Infobip Portal, go to **2FA** → **Applications** → **Create Application**
-   - Configure settings:
-     - **PIN Attempts**: 3-5 (number of verification attempts allowed)
-     - **PIN Time to Live**: 600 seconds (10 minutes)
-     - **Verify PIN Limit**: 3-5 (rate limiting)
-   - Save and note your **Application ID**
-
-3. **Create a Message Template**:
-   - Go to **2FA** → **Message Templates** → **Create Template**
-   - **Template Name**: `Resume Verification` (or any name)
-   - **Message Text**: `Your verification code is {{pin}}. This code expires in 10 minutes.`
-   - **PIN Type**: Numeric
-   - **PIN Length**: 6
-   - Save and note your **Message ID**
-
-4. **Add to `.env` file**:
-   ```
-   # Infobip Configuration (for phone OTP)
-   VITE_INFOBIP_API_KEY=your_infobip_api_key
-   VITE_INFOBIP_BASE_URL=https://api.infobip.com
-   VITE_INFOBIP_APPLICATION_ID=your_application_id
-   VITE_INFOBIP_MESSAGE_ID=your_message_id
-   ```
-
-5. **Security Note**: 
-   - ⚠️ **For production**, consider using a backend proxy to keep API keys secure
-   - The current implementation works but exposes API keys in the client bundle
-   - Infobip API keys should ideally be stored server-side
-
-6. Restart the development server for changes to take effect
-
-### How It Works:
-
-**Email Verification:**
-1. User clicks "Download Resume"
-2. User selects "Email" and enters their email address
-3. A 6-digit verification code is sent to their email
-4. User enters the code to verify
-5. Resume downloads automatically
-
-**Phone Verification:**
-1. User clicks "Download Resume"
-2. User selects "Phone" and enters their phone number (with country code, e.g., +381 60 123 4567)
-3. A 6-digit OTP is sent via SMS to their phone via Infobip
-4. User enters the code to verify
-5. Resume downloads automatically
-
-**Notifications:**
-- You receive an email notification with:
-  - The user's email/phone number
-  - Timestamp of download
-  - IP address (if available)
-
-### Features:
-
-- ✅ Email verification with 6-digit code (via EmailJS)
-- ✅ Phone verification with SMS OTP (via Infobip 2FA API)
-- ✅ Code expiration (10 minutes)
-- ✅ Resend code functionality
-- ✅ Download tracking and notifications
-- ✅ Phone number formatting (E.164 standard)
-- ✅ Automatic country code detection for Serbian/European numbers (defaults to +381)
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
+Personal portfolio; reuse patterns with attribution if helpful.
