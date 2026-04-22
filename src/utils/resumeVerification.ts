@@ -15,6 +15,14 @@ export interface VerificationResponse {
   blockedCountry?: boolean; // Indicates country is blocked
 }
 
+/** VITE_INFOBIP_BASE_URL may be set as host only; fetch() needs an absolute URL */
+function getInfobipBaseUrl(): string {
+  const raw = import.meta.env.VITE_INFOBIP_BASE_URL || 'https://api.infobip.com';
+  const t = String(raw).trim().replace(/\/$/, '');
+  if (/^https?:\/\//i.test(t)) return t;
+  return `https://${t.replace(/^\/+/, '')}`;
+}
+
 // Generate a random 6-digit verification code
 export const generateVerificationCode = (): string => {
   return Math.floor(100000 + Math.random() * 900000).toString();
@@ -424,7 +432,7 @@ export const sendPhoneOTP = async (
 ): Promise<VerificationResponse> => {
   try {
     const infobipApiKey = import.meta.env.VITE_INFOBIP_API_KEY;
-    const infobipBaseUrl = import.meta.env.VITE_INFOBIP_BASE_URL || 'https://api.infobip.com';
+    const infobipBaseUrl = getInfobipBaseUrl();
     const infobipApplicationId = import.meta.env.VITE_INFOBIP_APPLICATION_ID;
     const infobipMessageId = import.meta.env.VITE_INFOBIP_MESSAGE_ID;
 
@@ -555,7 +563,7 @@ export const verifyPhoneOTP = async (
 ): Promise<VerificationResponse> => {
   try {
     const infobipApiKey = import.meta.env.VITE_INFOBIP_API_KEY;
-    const infobipBaseUrl = import.meta.env.VITE_INFOBIP_BASE_URL || 'https://api.infobip.com';
+    const infobipBaseUrl = getInfobipBaseUrl();
 
     if (!infobipApiKey) {
       return {

@@ -1,5 +1,23 @@
 # Infobip Phone OTP Setup Guide
 
+## How this project uses Infobip
+
+The resume download flow calls Infobip **2FA (SMS PIN)** from the browser (`src/utils/resumeVerification.ts`):
+
+| Step | API | Purpose |
+| --- | --- | --- |
+| Send code | `POST {BASE_URL}/2fa/2/pin` with `applicationId`, `messageId`, `to` (E.164) | Triggers SMS with a numeric PIN; returns `pinId` |
+| Verify code | `POST {BASE_URL}/2fa/2/pin/{pinId}/verify` with `pin` | Confirms the code the user entered |
+
+**Environment variables (Vite) — all are required for SMS to work:**
+
+- `VITE_INFOBIP_API_KEY` — API key (`Authorization: App {key}`)
+- `VITE_INFOBIP_BASE_URL` — e.g. `https://your-subdomain.api.infobip.com`, or the hostname alone (`your-subdomain.api.infobip.com`); a missing `https://` is added automatically
+- `VITE_INFOBIP_APPLICATION_ID` — from a **2FA application** in Infobip
+- `VITE_INFOBIP_MESSAGE_ID` — from a **2FA message template** linked to that application
+
+> **Security:** the API key is embedded in the client bundle. For production, a backend proxy is safer; see comments in `resumeVerification.ts`.
+
 ## ✅ Credentials You Already Have
 
 - **API Key**: store in `.env` as `VITE_INFOBIP_API_KEY` (never commit; not duplicated here)
@@ -57,97 +75,19 @@ curl -X POST "https://YOUR_SUBDOMAIN.api.infobip.com/2fa/2/applications/YOUR_APP
 
 **Copy the `messageId` from the response!**
 
-### Option B: Using Node.js Script
+### Option B: Node script in this repo (recommended)
 
-Create a file `setup-infobip.js` in your project root:
+1. Put **`VITE_INFOBIP_API_KEY`** and **`VITE_INFOBIP_BASE_URL`** in your project root `.env` (same as for the Vite app).
 
-```javascript
-const API_KEY = 'YOUR_INFOBIP_API_KEY';
-const BASE_URL = 'https://YOUR_SUBDOMAIN.api.infobip.com';
+2. Run (Node 18+; uses native `fetch`):
 
-async function setupInfobip() {
-  try {
-    // Step 1: Create 2FA Application
-    console.log('Creating 2FA Application...');
-    const appResponse = await fetch(`${BASE_URL}/2fa/2/applications`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `App ${API_KEY}`,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        name: 'Resume Download OTP',
-        enabled: true,
-        configuration: {
-          pinAttempts: 5,
-          pinTimeToLive: '600s',
-          verifyPinLimit: '5/1d',
-          sendPinPerApplicationLimit: '50/1d',
-          sendPinPerPhoneNumberLimit: '3/1d',
-        },
-      }),
-    });
+   ```bash
+   npm run setup:infobip
+   ```
 
-    const appData = await appResponse.json();
-    
-    if (!appResponse.ok) {
-      throw new Error(`Failed to create application: ${JSON.stringify(appData)}`);
-    }
+3. The script `scripts/setup-infobip.mjs` creates a **2FA application** and a **message template**, then prints **`VITE_INFOBIP_APPLICATION_ID`** and **`VITE_INFOBIP_MESSAGE_ID`**. Copy those two lines into `.env` and restart `npm run dev`.
 
-    const applicationId = appData.applicationId;
-    console.log('✅ Application created!');
-    console.log(`Application ID: ${applicationId}`);
-
-    // Step 2: Create Message Template
-    console.log('\nCreating Message Template...');
-    const messageResponse = await fetch(`${BASE_URL}/2fa/2/applications/${applicationId}/messages`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `App ${API_KEY}`,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        language: 'en',
-        messageText: 'Your verification code is {{pin}}. This code expires in 10 minutes.',
-        pinType: 'NUMERIC',
-        pinLength: 6,
-        pinPlaceholder: '{{pin}}',
-      }),
-    });
-
-    const messageData = await messageResponse.json();
-    
-    if (!messageResponse.ok) {
-      throw new Error(`Failed to create message template: ${JSON.stringify(messageData)}`);
-    }
-
-    const messageId = messageData.messageId;
-    console.log('✅ Message Template created!');
-    console.log(`Message ID: ${messageId}`);
-
-    // Step 3: Display final configuration
-    console.log('\n' + '='.repeat(60));
-    console.log('🎉 Setup Complete! Add these to your .env file:');
-    console.log('='.repeat(60));
-    console.log(`VITE_INFOBIP_APPLICATION_ID=${applicationId}`);
-    console.log(`VITE_INFOBIP_MESSAGE_ID=${messageId}`);
-    console.log('='.repeat(60));
-
-  } catch (error) {
-    console.error('❌ Error:', error.message);
-    process.exit(1);
-  }
-}
-
-setupInfobip();
-```
-
-**Run the script:**
-```bash
-node setup-infobip.js
-```
+If a resource with the same name already exists, create application/template in the [portal](https://portal.infobip.com) or use the cURL flow above, then copy the IDs.
 
 ## 📋 Alternative: Create via Portal UI (Manual Method)
 
