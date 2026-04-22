@@ -54,18 +54,18 @@ const Certifications = () => {
       <main className="pt-20 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 animate-fade-in">
-            <div className="bg-terminal-accent/20 inline-block px-3 py-1 rounded-full mb-4">
-              <span className="text-terminal-accent text-sm">Achievements</span>
+            <div className="bg-terminal-accent/20 inline-block px-3 py-1 rounded-full mb-4 max-w-[calc(100vw-2rem)]">
+              <span className="text-terminal-accent text-sm font-mono">$ certs --list</span>
             </div>
-            <h1 className="text-4xl font-bold text-terminal-light mb-4">
+            <h1 className="text-3xl sm:text-4xl font-bold text-terminal-light mb-4 px-2 break-words">
               Professional Certifications
             </h1>
-            <p className="text-terminal-light/80 max-w-2xl mx-auto">
-              Validating expertise through industry-recognized certifications.
+            <p className="text-terminal-light/80 max-w-2xl mx-auto px-2 text-sm sm:text-base">
+              Industry credentials alongside hands-on shipping experience — Security+ target May 2026, plus completed programs and prior certifications.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 min-w-0">
             {certifications.map((cert, index) => (
               <Card 
                 key={index} 

@@ -2,8 +2,8 @@
 
 ## ✅ Credentials You Already Have
 
-- **API Key**: `e0529c7664809773d9bf1531ec89f7d5-87a1bebe-9fa8-4469-afab-60e82f09281b`
-- **Base URL**: `5585mj.api.infobip.com` (will use as `https://5585mj.api.infobip.com`)
+- **API Key**: store in `.env` as `VITE_INFOBIP_API_KEY` (never commit; not duplicated here)
+- **Base URL**: your Infobip API base (e.g. `https://YOUR_SUBDOMAIN.api.infobip.com`) → `VITE_INFOBIP_BASE_URL`
 
 ## 🚀 Quick Setup: Create via API (Recommended - Fastest Method)
 
@@ -14,8 +14,8 @@ Since you already have your API credentials, you can create both the Application
 **1. Create 2FA Application:**
 
 ```bash
-curl -X POST "https://5585mj.api.infobip.com/2fa/2/applications" \
-  -H "Authorization: App e0529c7664809773d9bf1531ec89f7d5-87a1bebe-9fa8-4469-afab-60e82f09281b" \
+curl -X POST "https://YOUR_SUBDOMAIN.api.infobip.com/2fa/2/applications" \
+  -H "Authorization: App YOUR_INFOBIP_API_KEY" \
   -H "Content-Type: application/json" \
   -H "Accept: application/json" \
   -d '{
@@ -36,8 +36,8 @@ curl -X POST "https://5585mj.api.infobip.com/2fa/2/applications" \
 **2. Create Message Template (replace `YOUR_APPLICATION_ID` with the ID from step 1):**
 
 ```bash
-curl -X POST "https://5585mj.api.infobip.com/2fa/2/applications/YOUR_APPLICATION_ID/messages" \
-  -H "Authorization: App e0529c7664809773d9bf1531ec89f7d5-87a1bebe-9fa8-4469-afab-60e82f09281b" \
+curl -X POST "https://YOUR_SUBDOMAIN.api.infobip.com/2fa/2/applications/YOUR_APPLICATION_ID/messages" \
+  -H "Authorization: App YOUR_INFOBIP_API_KEY" \
   -H "Content-Type: application/json" \
   -H "Accept: application/json" \
   -d '{
@@ -62,8 +62,8 @@ curl -X POST "https://5585mj.api.infobip.com/2fa/2/applications/YOUR_APPLICATION
 Create a file `setup-infobip.js` in your project root:
 
 ```javascript
-const API_KEY = 'e0529c7664809773d9bf1531ec89f7d5-87a1bebe-9fa8-4469-afab-60e82f09281b';
-const BASE_URL = 'https://5585mj.api.infobip.com';
+const API_KEY = 'YOUR_INFOBIP_API_KEY';
+const BASE_URL = 'https://YOUR_SUBDOMAIN.api.infobip.com';
 
 async function setupInfobip() {
   try {
@@ -214,8 +214,8 @@ VITE_WEB3FORMS_ACCESS_KEY=your_web3forms_key
 VITE_OWNER_EMAIL=your.email@example.com
 
 # Infobip Configuration (for phone OTP)
-VITE_INFOBIP_API_KEY=e0529c7664809773d9bf1531ec89f7d5-87a1bebe-9fa8-4469-afab-60e82f09281b
-VITE_INFOBIP_BASE_URL=https://5585mj.api.infobip.com
+VITE_INFOBIP_API_KEY=your_infobip_api_key
+VITE_INFOBIP_BASE_URL=https://YOUR_SUBDOMAIN.api.infobip.com
 VITE_INFOBIP_APPLICATION_ID=your_application_id_here
 VITE_INFOBIP_MESSAGE_ID=your_message_id_here
 ```

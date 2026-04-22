@@ -4,7 +4,7 @@
 
 1. **Verify .env file location**
    - The `.env` file MUST be in the project root (same directory as `package.json`)
-   - Path should be: `C:\Users\Damir\Desktop\bash-inspired-portfolio\.env`
+   - Example (Linux/macOS): `~/projects/bash-inspired-portfolio/.env`
 
 2. **Check .env file format**
    - No spaces around the `=` sign
@@ -12,19 +12,19 @@
    - Each variable on its own line
    - No trailing spaces
 
-3. **Correct .env format:**
+3. **Correct .env format** (use your real values; do not commit `.env`):
    ```env
-   VITE_INFOBIP_API_KEY=e0529c7664809773d9bf1531ec89f7d5-87a1bebe-9fa8-4469-afab-60e82f09281b
-   VITE_INFOBIP_BASE_URL=https://5585mj.api.infobip.com
-   VITE_INFOBIP_APPLICATION_ID=EFCEC9D41024991167728934124A4788
-   VITE_INFOBIP_MESSAGE_ID=ED1304C090BA1C7CBED317B6159A1A71
+   VITE_INFOBIP_API_KEY=your_infobip_api_key
+   VITE_INFOBIP_BASE_URL=https://YOUR_SUBDOMAIN.api.infobip.com
+   VITE_INFOBIP_APPLICATION_ID=your_application_id
+   VITE_INFOBIP_MESSAGE_ID=your_message_id
    ```
 
 4. **Hard restart the dev server**
    - Stop the server completely (Ctrl+C)
    - Close the terminal/command prompt
    - Open a new terminal
-   - Navigate to project: `cd C:\Users\Damir\Desktop\bash-inspired-portfolio`
+   - Navigate to project: `cd /path/to/bash-inspired-portfolio`
    - Start server: `npm run dev`
 
 5. **Verify in browser console**
@@ -53,12 +53,12 @@ VITE_INFOBIP_API_KEY=...
 
 ❌ Wrong:
 ```
-VITE_INFOBIP_API_KEY = e0529c...
+VITE_INFOBIP_API_KEY = your_key...
 ```
 
 ✅ Correct:
 ```
-VITE_INFOBIP_API_KEY=e0529c...
+VITE_INFOBIP_API_KEY=your_key...
 ```
 
 ### Issue 3: Quotes around values
@@ -66,12 +66,12 @@ VITE_INFOBIP_API_KEY=e0529c...
 
 ❌ Wrong:
 ```
-VITE_INFOBIP_API_KEY="e0529c..."
+VITE_INFOBIP_API_KEY="your_key..."
 ```
 
 ✅ Correct:
 ```
-VITE_INFOBIP_API_KEY=e0529c...
+VITE_INFOBIP_API_KEY=your_key...
 ```
 
 ### Issue 4: File encoding

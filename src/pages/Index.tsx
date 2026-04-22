@@ -1,14 +1,14 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
-import { Server, Brain, Code, Lock, Container } from "lucide-react";
+import { Brain, Cpu, Briefcase, GitBranch } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-terminal-dark font-mono">
+    <div className="min-h-screen bg-terminal-dark font-mono overflow-x-hidden">
       <Navbar />
-      
+
       <main className="pt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Hero Section */}
@@ -33,7 +33,7 @@ const Index = () => {
                   <span className="text-terminal-light/40">{'// '}</span>Open to remote full-stack / AI engineer roles
                 </p>
               </div>
-              
+
               <div className="w-full md:w-1/2 animate-fade-in-slow">
                 <div className="aspect-[4/3] relative scale-[0.775] max-w-[80%] mx-auto">
                   <img
@@ -52,7 +52,7 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="flex gap-4 animate-fade-in" style={{ animationDelay: "200ms" }}>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-md sm:max-w-none sm:w-auto items-stretch sm:items-center justify-center animate-fade-in px-2" style={{ animationDelay: "200ms" }}>
               <Link
                 to="/projects"
                 className="bg-terminal-accent text-terminal-dark px-6 py-3 rounded hover:bg-opacity-90 transition-all"
@@ -72,81 +72,88 @@ const Index = () => {
           <div className="py-20 border-t border-terminal-light/10">
             <div className="text-center mb-12 animate-fade-in">
               <div className="bg-terminal-accent/20 inline-block px-3 py-1 rounded-full mb-4">
-                <span className="text-terminal-accent text-sm">Current Project</span>
+                <span className="text-terminal-accent text-sm font-mono">$ cat ./current-project.md</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-terminal-light mb-4">
-                What I'm Currently Working On
+                What I&apos;m Currently Working On
               </h2>
             </div>
 
             <div className="max-w-6xl mx-auto animate-fade-in">
-              <h3 className="text-2xl md:text-3xl font-bold text-terminal-light mb-12 text-center">HomeLab Kubernetes Cluster — Raspberry Pi + K3s</h3>
-              
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-terminal-light mb-10 md:mb-12 text-center px-1 break-words text-balance">
+                Beekio — AI SaaS for commercial beekeepers
+              </h3>
+
               {/* Text wrapping layout - image floats left and vertically centered */}
               <div className="relative">
-                {/* First two paragraphs - full width */}
+                {/* Intro paragraphs - full width */}
                 <div className="text-terminal-light/80 leading-relaxed space-y-4 mb-6">
                   <p>
-                    I'm currently building a fully self-hosted HomeLab environment designed for learning, experimenting, and running real-world services.
+                    I&apos;m building <span className="text-terminal-accent">Beekio</span>, an AI-powered SaaS platform for commercial beekeepers — a risk-averse audience making high-stakes decisions where a bad Varroa treatment window can cost 60% of a colony, and almond pollination contracts are the year&apos;s paycheck.
                   </p>
                   <p>
-                    The setup includes a multi-node Raspberry Pi cluster connected through a managed switch, with all nodes running K3s, a lightweight Kubernetes distribution optimized for edge and ARM environments.
+                    The product ships end-to-end as a solo operation: landing page, app, backend API, AI pipeline, billing, auth, email, and infrastructure. Every piece is something I designed, built, and now maintain.
                   </p>
                 </div>
 
                 {/* Container for image and wrapping text */}
-                <div className="relative">
-                  {/* Image - floats left and positioned to align with middle of content */}
-                  <div className="w-full mb-6 md:float-left md:mr-8 md:mb-0 md:w-[45%] lg:w-[42%] xl:w-[38%] md:mt-12 animate-fade-in-slow">
+                <div className="relative min-w-0">
+                  {/* Image - floats left on md+; stacked full-width on mobile */}
+                  <div className="w-full max-w-full mb-6 md:float-left md:mr-8 md:mb-0 md:w-[45%] lg:w-[42%] xl:w-[38%] md:mt-12 animate-fade-in-slow">
                     <div className="relative rounded-[12px] overflow-hidden border border-terminal-light/10 shadow-lg mb-4">
                       <img
-                        src="/homelab.jpg"
-                        alt="My HomeLab Kubernetes Cluster setup with Raspberry Pi nodes running K3s"
+                        src="/beekio.png"
+                        alt="Beekio — AI SaaS platform for commercial beekeepers"
                         className="w-full h-auto object-cover"
                         loading="eager"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.style.display = 'none';
-                          target.parentElement!.classList.add('flex', 'items-center', 'justify-center', 'p-4', 'text-center', 'min-h-[200px]');
-                          target.parentElement!.innerHTML = '<p class="text-terminal-light/70">HomeLab image temporarily unavailable - This space showcases my home server and network infrastructure setup</p>';
+                          target.parentElement!.classList.add('flex', 'items-center', 'justify-center', 'text-center', 'min-h-[220px]', 'bg-gradient-to-br', 'from-terminal-dark', 'via-terminal-dark', 'to-terminal-accent/10');
+                          target.parentElement!.innerHTML = '<div class="py-12"><div class="text-terminal-accent/80 font-mono text-sm mb-2">$ open</div><div class="text-terminal-light font-mono text-xl font-bold">beekio.com</div></div>';
                         }}
                       />
                     </div>
                     {/* Tags below the image - left-aligned */}
                     <div className="flex flex-wrap gap-3 justify-start">
-                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Kubernetes</span>
-                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">K3s</span>
-                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Container Orchestration</span>
-                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Infrastructure Automation</span>
-                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Network Security</span>
-                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Firewall Configuration</span>
-                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Remote Access</span>
-                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">File Sharing</span>
+                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">React</span>
+                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">TypeScript</span>
+                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Vite</span>
+                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">FastAPI</span>
+                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Python</span>
+                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">PostgreSQL</span>
+                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Cloudflare R2</span>
+                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Railway</span>
+                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Clerk</span>
+                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Lemon Squeezy</span>
+                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">OpenAI</span>
                     </div>
                   </div>
 
-                  {/* Text content that wraps around the image - starting with explore section */}
-                  <div className="text-terminal-light/80 leading-relaxed space-y-5 md:overflow-hidden">
-                    <div className="bg-terminal-dark/50 border border-terminal-light/5 rounded-lg p-5">
+                  {/* Text content that wraps around the image */}
+                  <div className="text-terminal-light/80 leading-relaxed space-y-5 min-w-0 md:overflow-hidden">
+                    <div className="bg-terminal-dark/50 border border-terminal-light/5 rounded-lg p-4 sm:p-5 break-words">
                       <p className="font-medium text-terminal-light mb-3">
-                        This cluster allows me to explore:
+                        What I built:
                       </p>
-                      <ul className="space-y-2.5 list-disc list-inside ml-2">
-                        <li>Container orchestration with Kubernetes</li>
-                        <li>High-availability workloads across multiple nodes</li>
-                        <li>Infrastructure automation</li>
-                        <li>Networking and VLAN segmentation</li>
-                        <li>Monitoring and observability stacks</li>
-                        <li>Self-hosting services and micro-applications</li>
+                      <ul className="space-y-2.5 list-disc list-outside pl-5 sm:pl-6 text-sm sm:text-base">
+                        <li>Multi-tier AI usage enforcement with daily action tracking, automated UTC resets, and structured 429 responses</li>
+                        <li>Persistent AI chat with resumable sessions across logins</li>
+                        <li>Custom Clerk sign-in / sign-up pages</li>
+                        <li>Lemon Squeezy integration for four-tier subscription billing</li>
+                        <li>Cloudflare R2 image uploads via presigned URL flow</li>
+                        <li>React Query migration that cut in-app navigation from 4–5s to near-instant</li>
+                        <li>pytest backend suite and Alembic migrations</li>
+                        <li>Dev → main Git workflow with Cloudflare preview deployments</li>
                       </ul>
                     </div>
 
                     <div className="space-y-4">
                       <p>
-                        All nodes are neatly wired, powered, and networked, monitored from my workstation where I manage deployments, troubleshoot, and test new configurations in a clean, real-world environment.
+                        Beekio is one of three products under <span className="text-terminal-accent">Beekio LLC</span> (Wyoming) — the other two being <span className="text-terminal-accent">PriceRuled</span>, a 6-agent AI shopping verdict app, and <span className="text-terminal-accent">Sudowear.shop</span>, a direct-to-consumer e-commerce store.
                       </p>
                       <p>
-                        This HomeLab is a long-term project where I continuously expand my skills in Linux systems, distributed computing, DevOps tooling, and infrastructure reliability—while building something practical and fully my own.
+                        Currently in beta launch mode — Lemon Squeezy approved, Clerk webhooks in place, invitation email flow working. Next: getting real users in and iterating on the feedback that only production surfaces.
                       </p>
                     </div>
                   </div>
@@ -162,81 +169,67 @@ const Index = () => {
           <div className="py-20 border-t border-terminal-light/10">
             <div className="text-center mb-12 animate-fade-in">
               <div className="bg-terminal-accent/20 inline-block px-3 py-1 rounded-full mb-4">
-                <span className="text-terminal-accent text-sm">Continuous Learning</span>
+                <span className="text-terminal-accent text-sm font-mono">$ tail -f ./learning.log</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-terminal-light mb-4">
-                What I'm Learning Right Now
+                What I&apos;m Learning Right Now
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-              <Card className="bg-terminal-dark border border-terminal-light/10 hover:border-terminal-accent/50 transition-all duration-300">
-                <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Card className="bg-terminal-dark border border-terminal-light/10 hover:border-terminal-accent/50 transition-all duration-300 min-w-0">
+                <CardHeader className="min-w-0">
+                  <div className="flex items-start gap-3 min-w-0">
+                    <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center pt-0.5">
                       <Brain className="text-terminal-accent" size={24} />
                     </div>
-                    <CardTitle className="text-terminal-light">AI Development & Local LLM Research</CardTitle>
+                    <CardTitle className="text-terminal-light text-base sm:text-lg break-words">Multi-Agent LLM Systems</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="text-terminal-light/80">
-                  Building intelligent systems with a focus on training, optimizing, and deploying local large-language models for privacy, performance, and innovation.
+                  Building PriceRuled&apos;s 6-agent pipeline with Claude Haiku for classification and Sonnet for synthesis. Iterating on prompt design and the deterministic scoring layer that constrains what the LLMs control vs what stays pure Python.
                 </CardContent>
               </Card>
 
-              <Card className="bg-terminal-dark border border-terminal-light/10 hover:border-terminal-accent/50 transition-all duration-300">
-                <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center">
-                      <Container className="text-terminal-accent" size={24} />
+              <Card className="bg-terminal-dark border border-terminal-light/10 hover:border-terminal-accent/50 transition-all duration-300 min-w-0">
+                <CardHeader className="min-w-0">
+                  <div className="flex items-start gap-3 min-w-0">
+                    <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center pt-0.5">
+                      <Cpu className="text-terminal-accent" size={24} />
                     </div>
-                    <CardTitle className="text-terminal-light">Kubernetes</CardTitle>
+                    <CardTitle className="text-terminal-light text-base sm:text-lg break-words">Production AI Infrastructure</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="text-terminal-light/80">
-                  Mastering container orchestration with Kubernetes and K3s, building production-ready clusters and deploying scalable applications in my HomeLab environment.
+                  Daily usage enforcement, UTC midnight resets, structured 429 responses, APScheduler + Railway cron. The unglamorous backend that makes AI features feel fair and predictable to users.
                 </CardContent>
               </Card>
 
-              <Card className="bg-terminal-dark border border-terminal-light/10 hover:border-terminal-accent/50 transition-all duration-300">
-                <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center">
-                      <Server className="text-terminal-accent" size={24} />
+              <Card className="bg-terminal-dark border border-terminal-light/10 hover:border-terminal-accent/50 transition-all duration-300 min-w-0">
+                <CardHeader className="min-w-0">
+                  <div className="flex items-start gap-3 min-w-0">
+                    <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center pt-0.5">
+                      <Briefcase className="text-terminal-accent" size={24} />
                     </div>
-                    <CardTitle className="text-terminal-light">Linux & Open Source</CardTitle>
+                    <CardTitle className="text-terminal-light text-base sm:text-lg break-words">SaaS Operations</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="text-terminal-light/80">
-                  Working with Linux daily, embracing open-source technologies and contributing to the community.
+                  Running a solo SaaS — Wyoming LLC registration, Lemon Squeezy as merchant-of-record for global VAT, four-tier pricing with 10-month yearly billing, email deliverability across verified domains. The business side most engineers skip.
                 </CardContent>
               </Card>
 
-              <Card className="bg-terminal-dark border border-terminal-light/10 hover:border-terminal-accent/50 transition-all duration-300">
-                <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center">
-                      <Code className="text-terminal-accent" size={24} />
+              <Card className="bg-terminal-dark border border-terminal-light/10 hover:border-terminal-accent/50 transition-all duration-300 min-w-0">
+                <CardHeader className="min-w-0">
+                  <div className="flex items-start gap-3 min-w-0">
+                    <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center pt-0.5">
+                      <GitBranch className="text-terminal-accent" size={24} />
                     </div>
-                    <CardTitle className="text-terminal-light">Python & ML</CardTitle>
+                    <CardTitle className="text-terminal-light text-base sm:text-lg break-words">Developer Experience</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="text-terminal-light/80">
-                  Learning Python with a focus on automation and machine learning, building practical solutions for real-world problems.
-                </CardContent>
-              </Card>
-
-              <Card className="bg-terminal-dark border border-terminal-light/10 hover:border-terminal-accent/50 transition-all duration-300">
-                <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center">
-                      <Lock className="text-terminal-accent" size={24} />
-                    </div>
-                    <CardTitle className="text-terminal-light">CompTIA Security+</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="text-terminal-light/80">
-                  Preparing for CompTIA Security+ certification (estimated completion: May 2026), focusing on cybersecurity fundamentals.
+                  Clean dev workflows — pytest suites, Alembic migrations, Cloudflare preview deployments, React Query state patterns, dev → main Git flow. Investing in the tooling that makes solo dev not suck at scale.
                 </CardContent>
               </Card>
             </div>

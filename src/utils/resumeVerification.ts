@@ -102,6 +102,38 @@ export const isBlockedAsianCountry = (phone: string): boolean => {
   return false;
 };
 
+/** Email OTP works if any of EmailJS, custom API, or Web3Forms+owner is configured. */
+export const isEmailVerificationConfigured = (): boolean => {
+  const emailjs =
+    !!import.meta.env.VITE_EMAILJS_SERVICE_ID &&
+    !!import.meta.env.VITE_EMAILJS_TEMPLATE_ID &&
+    !!import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+  const api = !!import.meta.env.VITE_EMAIL_API_ENDPOINT;
+  const web3 =
+    !!import.meta.env.VITE_WEB3FORMS_ACCESS_KEY &&
+    !!import.meta.env.VITE_OWNER_EMAIL;
+  return emailjs || api || web3;
+};
+
+/** SMS OTP requires full Infobip 2FA application + message template. */
+export const isPhoneVerificationConfigured = (): boolean => {
+  return (
+    !!import.meta.env.VITE_INFOBIP_API_KEY &&
+    !!import.meta.env.VITE_INFOBIP_APPLICATION_ID &&
+    !!import.meta.env.VITE_INFOBIP_MESSAGE_ID
+  );
+};
+
+const misconfiguredEmailMessage = (): string =>
+  import.meta.env.DEV
+    ? 'Email verification is not configured. Set VITE_EMAILJS_* (recommended), or VITE_EMAIL_API_ENDPOINT, or VITE_WEB3FORMS_ACCESS_KEY + VITE_OWNER_EMAIL in .env and restart the dev server.'
+    : 'Email verification is temporarily unavailable. Please use the Contact page to reach out, or try again later.';
+
+const misconfiguredPhoneMessage = (missing: string[]): string =>
+  import.meta.env.DEV
+    ? `Infobip is not configured. Missing: ${missing.join(', ')}. Add them to .env and restart.`
+    : 'SMS verification is temporarily unavailable. Please use email verification instead, or use the Contact page.';
+
 /**
  * Get the country name from country code (for error messages)
  */
@@ -183,7 +215,7 @@ export const sendVerificationCode = async (
 
     return {
       success: false,
-      message: 'Email service not configured. Please contact the site administrator.',
+      message: misconfiguredEmailMessage(),
     };
   } catch (error) {
     if (import.meta.env.DEV) {
@@ -330,10 +362,10 @@ export const notifyOwnerOfDownload = async (
       },
       body: JSON.stringify({
         access_key: web3formsKey,
-        subject: '📥 Resume Downloaded - ' + email,
+        subject: '📥 Resume Downloaded - ' + (email || phone || 'phone verification'),
         to_email: ownerEmail,
         from_name: 'Portfolio Notification',
-        from_email: email,
+        from_email: email || ownerEmail,
         message: `
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📥 RESUME DOWNLOAD NOTIFICATION
@@ -341,8 +373,7 @@ export const notifyOwnerOfDownload = async (
 
 Someone has downloaded your resume!
 
-📧 User Email: ${email}
-${phone ? `📱 Phone: ${phone}\n` : ''}
+${email ? `📧 User Email: ${email}\n` : ''}${phone ? `📱 Phone: ${phone}\n` : ''}
 🕐 Download Time: ${new Date().toLocaleString()}
 🌐 IP Address: ${clientIP}
 
@@ -412,7 +443,7 @@ export const sendPhoneOTP = async (
       }
       return {
         success: false,
-        message: `Infobip service not configured. Missing: ${missing.join(', ')}. Please check your .env file and restart the server.`,
+        message: misconfiguredPhoneMessage(missing),
       };
     }
 
@@ -529,7 +560,7 @@ export const verifyPhoneOTP = async (
     if (!infobipApiKey) {
       return {
         success: false,
-        message: 'Infobip service not configured.',
+        message: misconfiguredPhoneMessage(['VITE_INFOBIP_API_KEY']),
       };
     }
 

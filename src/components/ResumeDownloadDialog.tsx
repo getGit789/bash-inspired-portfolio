@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Dialog,
   DialogContent,
@@ -22,6 +23,8 @@ import {
   generateVerificationCode,
   formatPhoneNumber,
   isValidPhoneNumber,
+  isEmailVerificationConfigured,
+  isPhoneVerificationConfigured,
 } from '@/utils/resumeVerification';
 import { Mail, Phone, Loader2 } from 'lucide-react';
 
@@ -50,6 +53,10 @@ const ResumeDownloadDialog = ({
   const [countdown, setCountdown] = useState(0);
   const [phoneRateLimitExceeded, setPhoneRateLimitExceeded] = useState(false);
   const [phoneBlocked, setPhoneBlocked] = useState(false);
+
+  const emailOk = useMemo(() => isEmailVerificationConfigured(), []);
+  const phoneOk = useMemo(() => isPhoneVerificationConfigured(), []);
+  const verificationReady = emailOk || phoneOk;
 
   // Countdown timer for code expiration
   useEffect(() => {
@@ -85,6 +92,12 @@ const ResumeDownloadDialog = ({
       }
     }
   }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    if (emailOk && !phoneOk) setContactType('email');
+    else if (!emailOk && phoneOk) setContactType('phone');
+  }, [open, emailOk, phoneOk]);
 
   const handleOpenChange = (newOpen: boolean) => {
     if (!newOpen) {
@@ -353,7 +366,7 @@ const ResumeDownloadDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="sm:max-w-[425px] bg-terminal-dark border-terminal-accent/20">
+      <DialogContent className="w-[calc(100vw-1.5rem)] max-w-[calc(100vw-1.5rem)] sm:max-w-[425px] bg-terminal-dark border-terminal-accent/20 max-h-[90dvh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-terminal-light font-mono">
             {'>'} Resume Download
@@ -365,7 +378,61 @@ const ResumeDownloadDialog = ({
           </DialogDescription>
         </DialogHeader>
 
-        {step === 'contact' ? (
+        {!verificationReady && (
+          <div
+            className="rounded-md border border-red-500/40 bg-red-500/10 px-3 py-3 text-sm text-terminal-light font-mono"
+            role="alert"
+          >
+            {import.meta.env.DEV ? (
+              <>
+                Resume verification is not configured (missing email and/or SMS env vars).{' '}
+                <Link
+                  to="/contact"
+                  className="text-terminal-accent underline underline-offset-2 hover:text-terminal-accent/90"
+                  onClick={() => handleOpenChange(false)}
+                >
+                  Contact page
+                </Link>{' '}
+                — or add <span className="text-terminal-light/80">VITE_EMAILJS_*</span> and/or{' '}
+                <span className="text-terminal-light/80">VITE_INFOBIP_*</span> to{' '}
+                <span className="text-terminal-light/80">.env</span> and restart Vite.
+              </>
+            ) : (
+              <>
+                Resume download verification is unavailable right now.{' '}
+                <Link
+                  to="/contact"
+                  className="text-terminal-accent underline underline-offset-2 hover:text-terminal-accent/90"
+                  onClick={() => handleOpenChange(false)}
+                >
+                  Use the Contact page
+                </Link>{' '}
+                to reach me.
+              </>
+            )}
+          </div>
+        )}
+
+        {verificationReady && step === 'contact' && (
+          <p className="text-xs text-terminal-light/60 font-mono -mt-1">
+            {!phoneOk && emailOk && 'SMS verification is off — use email.'}
+            {!emailOk && phoneOk && 'Email verification is off — use phone with country code (e.g. +381).'}
+            {emailOk && phoneOk && 'Tip: include country code for phone (+381 Serbia, +44 UK, +49 Germany).'}
+          </p>
+        )}
+
+        {step === 'contact' && !verificationReady ? (
+          <DialogFooter className="flex-col gap-2 sm:flex-row sm:justify-end">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => handleOpenChange(false)}
+              className="font-mono border-terminal-accent/50 text-terminal-light w-full sm:w-auto"
+            >
+              Close
+            </Button>
+          </DialogFooter>
+        ) : step === 'contact' ? (
           <form onSubmit={handleSendCode}>
             <div className="grid gap-4 py-4">
               <div className="grid gap-2">
@@ -373,12 +440,14 @@ const ResumeDownloadDialog = ({
                   <Button
                     type="button"
                     variant={contactType === 'email' ? 'default' : 'outline'}
-                    onClick={() => setContactType('email')}
+                    onClick={() => emailOk && setContactType('email')}
+                    disabled={!emailOk}
+                    title={!emailOk ? 'Configure VITE_EMAILJS_* or other email env vars' : undefined}
                     className={`flex-1 font-mono border ${
                       contactType === 'email'
                         ? 'bg-terminal-accent text-terminal-dark border-terminal-accent shadow-[0_0_0_1px_rgba(0,255,0,0.12)]'
                         : 'border-terminal-accent/40 text-terminal-light bg-transparent hover:bg-terminal-accent/10 hover:text-terminal-light'
-                    }`}
+                    } ${!emailOk ? 'opacity-50 cursor-not-allowed' : ''}`}
                   >
                     <Mail
                       className={`w-4 h-4 mr-2 ${
@@ -390,12 +459,14 @@ const ResumeDownloadDialog = ({
                   <Button
                     type="button"
                     variant={contactType === 'phone' ? 'default' : 'outline'}
-                    onClick={() => setContactType('phone')}
+                    onClick={() => phoneOk && setContactType('phone')}
+                    disabled={!phoneOk}
+                    title={!phoneOk ? 'Configure VITE_INFOBIP_API_KEY, APPLICATION_ID, MESSAGE_ID' : undefined}
                     className={`flex-1 font-mono border ${
                       contactType === 'phone'
                         ? 'bg-terminal-accent text-terminal-dark border-terminal-accent shadow-[0_0_0_1px_rgba(0,255,0,0.12)]'
                         : 'border-terminal-accent/40 text-terminal-light bg-transparent hover:bg-terminal-accent/10 hover:text-terminal-light'
-                    }`}
+                    } ${!phoneOk ? 'opacity-50 cursor-not-allowed' : ''}`}
                   >
                     <Phone
                       className={`w-4 h-4 mr-2 ${
@@ -482,7 +553,11 @@ const ResumeDownloadDialog = ({
               <Button
                 type="submit"
                 className="bg-terminal-accent text-terminal-dark font-mono hover:bg-opacity-90 hover:text-white active:text-terminal-dark"
-                disabled={isLoading || (contactType === 'email' ? !email : !phone)}
+                disabled={
+                  !verificationReady ||
+                  isLoading ||
+                  (contactType === 'email' ? !email : !phone)
+                }
               >
                 {isLoading ? (
                   <>
