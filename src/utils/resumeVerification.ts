@@ -178,6 +178,8 @@ export const sendVerificationCode = async (
   email: string,
   code: string
 ): Promise<VerificationResponse> => {
+  // EmailJS may return HTTP 412 if the address contains uppercase letters (see community reports).
+  const normalizedEmail = email.trim().toLowerCase();
   try {
     // Option 1: Use EmailJS (requires setup at emailjs.com)
     const emailjsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
@@ -185,13 +187,19 @@ export const sendVerificationCode = async (
     const emailjsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
     if (emailjsServiceId && emailjsTemplateId && emailjsPublicKey) {
-      return await sendViaEmailJS(email, code, emailjsServiceId, emailjsTemplateId, emailjsPublicKey);
+      return await sendViaEmailJS(
+        normalizedEmail,
+        code,
+        emailjsServiceId,
+        emailjsTemplateId,
+        emailjsPublicKey
+      );
     }
 
     // Option 2: Use a backend API endpoint (you'll need to create this)
     const apiEndpoint = import.meta.env.VITE_EMAIL_API_ENDPOINT;
     if (apiEndpoint) {
-      return await sendViaAPI(email, code, apiEndpoint);
+      return await sendViaAPI(normalizedEmail, code, apiEndpoint);
     }
 
     // Fallback: Use Web3Forms but send to owner who forwards (not ideal)
@@ -205,10 +213,10 @@ export const sendVerificationCode = async (
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           access_key: web3formsKey,
-          subject: `Forward Verification Code to ${email}`,
+          subject: `Forward Verification Code to ${normalizedEmail}`,
           to_email: ownerEmail,
-          from_email: email,
-          message: `Please forward this verification code to ${email}:\n\nCode: ${code}`,
+          from_email: normalizedEmail,
+          message: `Please forward this verification code to ${normalizedEmail}:\n\nCode: ${code}`,
         }),
       });
 
