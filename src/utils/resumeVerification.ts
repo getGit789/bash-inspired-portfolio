@@ -244,6 +244,15 @@ export const sendVerificationCode = async (
   }
 };
 
+/** EmailJS rejects with an object that often includes `text` (API error body). */
+function emailJsFailureDetail(error: unknown): string | undefined {
+  if (!error || typeof error !== 'object') return undefined;
+  const o = error as Record<string, unknown>;
+  if (typeof o.text === 'string' && o.text.trim()) return o.text.trim();
+  if (typeof o.message === 'string' && o.message.trim()) return o.message.trim();
+  return undefined;
+}
+
 // Send via EmailJS
 const sendViaEmailJS = async (
   email: string,
@@ -277,8 +286,12 @@ const sendViaEmailJS = async (
       };
     }
   } catch (error) {
+    const detail = emailJsFailureDetail(error);
     if (import.meta.env.DEV) {
       console.error('EmailJS error:', error);
+    }
+    if (detail) {
+      console.warn('EmailJS send failed:', detail);
     }
   }
   return {
