@@ -24,10 +24,10 @@ const Index = () => {
                   <span className="text-terminal-accent">AI Engineer</span>
                 </h1>
                 <p className="text-terminal-light/80 text-lg mb-4 leading-relaxed">
-                  Founder of <span className="text-terminal-accent">Beekio LLC</span>, building AI-powered SaaS end-to-end — FastAPI backends, React frontends, multi-agent LLM pipelines, and the production infrastructure that holds it all together.
+                  Founder of <span className="text-terminal-accent">Beekio LLC</span>. I build AI SaaS end to end: FastAPI backends, React frontends, LLM pipelines, and the infrastructure that keeps them running.
                 </p>
                 <p className="text-terminal-light/60 text-base mb-6 leading-relaxed">
-                  Previously System Administrator at Mozzartbet and IT Support Engineer at AT&amp;T Brno. Comfortable from database schema to deployment, and debugging production at 3 a.m.
+                  Previously System Administrator at Mozzartbet and IT Support Engineer at AT&amp;T Brno. Comfortable anywhere between the database schema and the deploy, including production at 3 a.m.
                 </p>
                 <p className="text-terminal-accent/90 text-sm mb-2 font-mono">
                   <span className="text-terminal-light/40">{'// '}</span>Open to remote full-stack / AI engineer roles
@@ -88,7 +88,7 @@ const Index = () => {
 
             <div className="max-w-6xl mx-auto animate-fade-in">
               <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-terminal-light mb-10 md:mb-12 text-center px-1 break-words text-balance">
-                Beekio — AI SaaS for commercial beekeepers
+                Beekio, AI SaaS for commercial beekeepers
               </h3>
 
               {/* Text wrapping layout - image floats left and vertically centered */}
@@ -96,10 +96,10 @@ const Index = () => {
                 {/* Intro paragraphs - full width */}
                 <div className="text-terminal-light/80 leading-relaxed space-y-4 mb-6">
                   <p>
-                    I&apos;m building <span className="text-terminal-accent">Beekio</span>, an AI-powered SaaS platform for commercial beekeepers — a risk-averse audience making high-stakes decisions where a bad Varroa treatment window can cost 60% of a colony, and almond pollination contracts are the year&apos;s paycheck.
+                    I&apos;m building <span className="text-terminal-accent">Beekio</span>, an AI SaaS platform for commercial beekeepers. It is a careful audience with a lot at stake: a badly timed Varroa treatment can cost 60% of a colony, and almond pollination contracts are the year&apos;s paycheck.
                   </p>
                   <p>
-                    The product ships end-to-end as a solo operation: landing page, app, backend API, AI pipeline, billing, auth, email, and infrastructure. Every piece is something I designed, built, and now maintain.
+                    It is a solo operation. Landing page, app, backend API, AI pipeline, billing, auth, email, infrastructure: I designed and built each piece and I maintain it now.
                   </p>
                 </div>
 
@@ -109,9 +109,9 @@ const Index = () => {
                   <div className="w-full max-w-full mb-6 md:float-left md:mr-8 md:mb-0 md:w-[45%] lg:w-[42%] xl:w-[38%] animate-fade-in-slow">
                     <div className="relative w-full aspect-[5/4] md:aspect-[6/5] rounded-[12px] overflow-hidden border border-terminal-light/10 shadow-lg mb-4">
                       <img
-                        src="/beekio-image-landing.png"
-                        alt="Beekio — AI SaaS platform for commercial beekeepers"
-                        className="absolute inset-0 h-full w-full object-cover object-top"
+                        src="/beekio-blog-main-1200x630.png"
+                        alt="Beekio, your AI beekeeping consultant. Always on."
+                        className="absolute inset-0 h-full w-full object-contain bg-[#0B0A08]"
                         loading="eager"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
@@ -132,7 +132,7 @@ const Index = () => {
                       <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Cloudflare R2</span>
                       <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Railway</span>
                       <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Clerk</span>
-                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Lemon Squeezy</span>
+                      <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">Stripe</span>
                       <span className="bg-terminal-accent/10 text-terminal-accent px-3 py-1 rounded-full text-sm">OpenAI</span>
                     </div>
                     <div className="flex gap-4 flex-wrap mt-3">
@@ -162,20 +162,20 @@ const Index = () => {
                         <li>Multi-tier AI usage enforcement with daily action tracking, automated UTC resets, and structured 429 responses</li>
                         <li>Persistent AI chat with resumable sessions across logins</li>
                         <li>Custom Clerk sign-in / sign-up pages</li>
-                        <li>Lemon Squeezy integration for four-tier subscription billing</li>
+                        <li>Stripe subscription billing across four tiers</li>
                         <li>Cloudflare R2 image uploads via presigned URL flow</li>
-                        <li>React Query migration that cut in-app navigation from 4–5s to near-instant</li>
+                        <li>React Query migration that cut in-app navigation from 4 to 5 seconds down to near instant</li>
                         <li>pytest backend suite and Alembic migrations</li>
-                        <li>Dev → main Git workflow with Cloudflare preview deployments</li>
+                        <li>Dev to main Git workflow with Cloudflare preview deployments</li>
                       </ul>
                     </div>
 
                     <div className="space-y-4">
                       <p>
-                        Beekio is one of three products under <span className="text-terminal-accent">Beekio LLC</span> (Wyoming) — the other two being <span className="text-terminal-accent">PriceRuled</span>, a 6-agent AI shopping verdict app, and <span className="text-terminal-accent">Sudowear.shop</span>, a direct-to-consumer e-commerce store.
+                        Beekio runs under <span className="text-terminal-accent">Beekio LLC</span> (Wyoming), alongside <span className="text-terminal-accent">Sudowear.shop</span>, a direct-to-consumer e-commerce store.
                       </p>
                       <p>
-                        Currently in beta launch mode — Lemon Squeezy approved, Clerk webhooks in place, invitation email flow working. Next: getting real users in and iterating on the feedback that only production surfaces.
+                        It is in beta launch mode. Stripe billing is wired in, Clerk webhooks are in place, and the invitation email flow works. Next comes real users, and the kind of feedback only production gives you.
                       </p>
                     </div>
                   </div>
@@ -209,7 +209,7 @@ const Index = () => {
                   </div>
                 </CardHeader>
                 <CardContent className="text-terminal-light/80">
-                  Building PriceRuled&apos;s 6-agent pipeline with Claude Haiku for classification and Sonnet for synthesis. Iterating on prompt design and the deterministic scoring layer that constrains what the LLMs control vs what stays pure Python.
+                  Building the AI advisor inside Beekio: prompt design, and a deterministic layer that decides what the LLM gets to control and what stays plain Python.
                 </CardContent>
               </Card>
 
@@ -237,7 +237,7 @@ const Index = () => {
                   </div>
                 </CardHeader>
                 <CardContent className="text-terminal-light/80">
-                  Running a solo SaaS — Wyoming LLC registration, Lemon Squeezy as merchant-of-record for global VAT, four-tier pricing with 10-month yearly billing, email deliverability across verified domains. The business side most engineers skip.
+                  Running a solo SaaS: Wyoming LLC registration, Stripe billing, four pricing tiers with yearly plans priced at 10 months, email deliverability across verified domains. The business side most engineers skip.
                 </CardContent>
               </Card>
 
@@ -251,7 +251,7 @@ const Index = () => {
                   </div>
                 </CardHeader>
                 <CardContent className="text-terminal-light/80">
-                  Clean dev workflows — pytest suites, Alembic migrations, Cloudflare preview deployments, React Query state patterns, dev → main Git flow. Investing in the tooling that makes solo dev not suck at scale.
+                  Clean dev workflows: pytest suites, Alembic migrations, Cloudflare preview deployments, React Query state patterns, a dev to main Git flow. Tooling that keeps solo development from getting painful as the app grows.
                 </CardContent>
               </Card>
             </div>
