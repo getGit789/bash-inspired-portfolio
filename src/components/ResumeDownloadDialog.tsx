@@ -393,7 +393,7 @@ const ResumeDownloadDialog = ({
                 >
                   Contact page
                 </Link>{' '}
-                — or add <span className="text-terminal-light/80">VITE_EMAILJS_*</span> and/or{' '}
+                , or add <span className="text-terminal-light/80">VITE_EMAILJS_*</span> and/or{' '}
                 <span className="text-terminal-light/80">VITE_INFOBIP_*</span> to{' '}
                 <span className="text-terminal-light/80">.env</span> and restart Vite.
               </>
@@ -415,8 +415,8 @@ const ResumeDownloadDialog = ({
 
         {verificationReady && step === 'contact' && (
           <p className="text-xs text-terminal-light/60 font-mono -mt-1">
-            {!phoneOk && emailOk && 'SMS verification is off — use email.'}
-            {!emailOk && phoneOk && 'Email verification is off — use phone with country code (e.g. +381).'}
+            {!phoneOk && emailOk && 'SMS verification is off. Use email.'}
+            {!emailOk && phoneOk && 'Email verification is off. Use a phone number with country code (e.g. +381).'}
             {emailOk && phoneOk && 'Tip: include country code for phone (+381 Serbia, +44 UK, +49 Germany).'}
           </p>
         )}

@@ -16,8 +16,8 @@ type Project = {
   featured?: boolean;
 };
 
-/** Index of first “legacy” card — section header is rendered immediately before it. */
-const LEGACY_SECTION_START_INDEX = 6;
+/** Index of first "legacy" card; the section header is rendered immediately before it. */
+const LEGACY_SECTION_START_INDEX = 5;
 
 const Projects = () => {
   const projects: Project[] = [
@@ -25,13 +25,13 @@ const Projects = () => {
     {
       title: "Beekio",
       description:
-        "AI-powered SaaS platform for commercial beekeepers. Persistent AI chat with resumable sessions, multi-tier daily usage enforcement with automated UTC resets, four-tier subscription billing, and presigned R2 image uploads. Built solo from landing page to production.",
+        "AI SaaS platform for commercial beekeepers. Persistent AI chat with resumable sessions, multi-tier daily usage limits with automated UTC resets, four-tier Stripe subscription billing, and presigned R2 image uploads. Built solo, landing page to production.",
       technologies: [
         "React", "TypeScript", "Vite", "FastAPI", "Python",
-        "PostgreSQL", "Clerk", "Lemon Squeezy", "Cloudflare R2",
+        "PostgreSQL", "Clerk", "Stripe", "Cloudflare R2",
         "Railway", "OpenAI"
       ],
-      image: "/beekio-image.png",
+      image: "/beekio-blog-inarticle-1200x630.png",
       placeholderLabel: "beekio.com",
       links: {
         // Waitlist today; switch to app subdomain when beta is public
@@ -41,26 +41,9 @@ const Projects = () => {
       featured: true,
     },
     {
-      title: "PriceRuled",
-      description:
-        "AI shopping verdict app with a 6-agent LLM pipeline that returns BUY / WAIT / SKIP on consumer products. Claude Haiku for classification, Sonnet for synthesis, Tavily + Serper for research, Keepa for price history. Deterministic Python scoring; LLMs only write the human-readable narrative.",
-      technologies: [
-        "React", "TypeScript", "Vite", "FastAPI",
-        "Celery", "Upstash Redis", "Claude API",
-        "Tavily", "Serper", "Keepa", "Railway"
-      ],
-      image: "/priceruled-image.png",
-      placeholderLabel: "priceruled.pages.dev",
-      links: {
-        live: "https://priceruled.pages.dev/",
-        github: null,
-      },
-      featured: true,
-    },
-    {
       title: "Sudowear.shop",
       description:
-        "Direct-to-consumer e-commerce store built and operated end-to-end — storefront, payment processing, and order fulfillment workflow.",
+        "Direct-to-consumer e-commerce store I built and run: storefront, payment processing, and the order fulfillment workflow.",
       technologies: ["E-commerce", "Payments", "Order Fulfillment"], // refine when stack is finalized (e.g. Shopify, Medusa, custom)
       image: "/sudowear-image.png",
       placeholderLabel: "sudowear.shop",
@@ -75,7 +58,7 @@ const Projects = () => {
     {
       title: "Pingit",
       description:
-        "Real-time chat with messaging, authentication, and message history — Socket.io, React, and MongoDB.",
+        "Real-time chat with messaging, authentication, and message history. Socket.io, React, and MongoDB.",
       technologies: ["Node.js", "Socket.io", "React", "MongoDB"],
       image: "/image1.png",
       links: {
@@ -97,7 +80,7 @@ const Projects = () => {
     {
       title: "E-commerce Dashboard",
       description:
-        "Admin dashboard for products, orders, and customer data with analytics — Next.js and Redux.",
+        "Admin dashboard for products, orders, and customer data, with analytics. Next.js and Redux.",
       technologies: ["Next.js", "TypeScript", "React", "Redux"],
       image: "/image2.png",
       links: {
@@ -135,7 +118,7 @@ const Projects = () => {
     {
       title: "Weather Application",
       description:
-        "Weather forecast app with location search and detailed conditions — OpenWeather API and vanilla front-end.",
+        "Weather forecast app with location search and detailed conditions. OpenWeather API and a vanilla front end.",
       technologies: ["JavaScript", "OpenWeather API", "HTML", "CSS"],
       image: "/image3.png",
       links: {
@@ -159,8 +142,8 @@ const Projects = () => {
               Featured Projects
             </h1>
             <p className="text-terminal-light/80 max-w-2xl mx-auto">
-              Production SaaS products I&apos;m currently building as a solo founder, plus side projects and a few
-              earlier builds from my portfolio archive.
+              Production SaaS I&apos;m building as a solo founder, plus side projects and a few
+              earlier builds from the archive.
             </p>
           </div>
 
@@ -177,7 +160,7 @@ const Projects = () => {
                         Earlier portfolio projects
                       </h2>
                       <p className="text-terminal-light/70 text-sm md:text-base">
-                        Older demos — Notenook, NunoReverse, and a weather client — kept for context on how I got here.
+                        Older demos (Notenook, NunoReverse, a weather client), kept for context on how I got here.
                       </p>
                     </div>
                   </div>
@@ -266,7 +249,7 @@ const Projects = () => {
                     )}
                     {!project.links.github && !project.links.live && (
                       <span className="text-terminal-light/40 text-sm italic">
-                        Private — closed source
+                        Private, closed source
                       </span>
                     )}
                   </div>

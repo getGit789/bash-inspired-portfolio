@@ -9,7 +9,7 @@ const Certifications = () => {
       organization: "Google",
       date: "March 28th, 2025",
       newDate: "May 12th, 2025",
-      description: "Focusing on automation and Python scripting for IT operations",
+      description: "Automation and Python scripting for IT operations",
       credentialId: "Upcoming",
       link: "",
       scheduled: false,
@@ -20,7 +20,7 @@ const Certifications = () => {
       organization: "comptia.org",
       date: "Exam - September 2025",
       newDate: "Exam - May 2026",
-      description: "Focusing on Cyber Security and advanced network protection",
+      description: "Cyber security and advanced network protection",
       credentialId: "Upcoming",
       link: "",
       scheduled: true,
@@ -61,7 +61,7 @@ const Certifications = () => {
               Professional Certifications
             </h1>
             <p className="text-terminal-light/80 max-w-2xl mx-auto px-2 text-sm sm:text-base">
-              Industry credentials alongside hands-on shipping experience — Security+ target May 2026, plus completed programs and prior certifications.
+              Industry credentials next to hands-on shipping experience. Security+ is targeted for May 2026; the rest are completed programs and earlier certifications.
             </p>
           </div>
 
@@ -110,7 +110,7 @@ const Certifications = () => {
                     {cert.failed && cert.newDate && (
                       <>
                         <div className="text-terminal-light/60">
-                          New attempt: {cert.newDate} — <span className="text-green-400">Passed</span>
+                          New attempt: {cert.newDate}, <span className="text-green-400">Passed</span>
                         </div>
                         <div className="flex items-center gap-2 text-terminal-light/60">
                           <CheckCircle size={16} className="text-terminal-accent/70" />

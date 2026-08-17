@@ -14,7 +14,7 @@ const Education = () => {
       achievements: [
         "Graduated with Honors",
         "Conducted research on sports management strategies",
-        "Actively participated in student sports events and leadership programs"
+        "Took part in student sports events and leadership programs"
       ]
     }
   ];
@@ -33,7 +33,7 @@ const Education = () => {
               Education
             </h1>
             <p className="text-terminal-light/80 max-w-2xl mx-auto">
-              My academic journey and achievements in sports management.
+              Academic background in sports management.
             </p>
           </div>
 

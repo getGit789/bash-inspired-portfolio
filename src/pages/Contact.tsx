@@ -17,7 +17,7 @@ const Contact = () => {
               Contact Me
             </h1>
             <p className="text-terminal-light/80 max-w-2xl mx-auto">
-              Have a question or want to work together? Feel free to send me a message!
+              Have a question, or want to work together? Send me a message.
             </p>
           </div>
 

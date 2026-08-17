@@ -13,19 +13,19 @@ const ROUTES: Record<string, PageSeo> = {
   "/": {
     title: "Damir Kranjcevic - Full-Stack Engineer",
     description:
-      "Full-stack and AI engineer. Founder of Beekio — FastAPI, React, LLM pipelines, and production infrastructure. Previously system administrator and enterprise support. Open to remote roles.",
+      "Full-stack and AI engineer. Founder of Beekio: FastAPI, React, LLM pipelines, and production infrastructure. Previously system administrator and enterprise support. Open to remote roles.",
     path: "/",
   },
   "/why": {
     title: "Why I Build | Damir Kranjcevic",
     description:
-      "Why I ship side projects, learn in public, and invest in a terminal-style portfolio — passion, purpose, and growth as a full-stack engineer.",
+      "Why I ship side projects, learn in public, and keep a terminal-style portfolio as a full-stack engineer.",
     path: "/why",
   },
   "/projects": {
     title: "Projects | Damir Kranjcevic",
     description:
-      "Selected work: Beekio, PriceRuled, Sudowear, Pingit, Python interpreter, dashboards, and more — React, FastAPI, AI integrations, and e-commerce.",
+      "Selected work: Beekio, Sudowear, Pingit, Python interpreter, dashboards, and more. React, FastAPI, AI integrations, and e-commerce.",
     path: "/projects",
   },
   "/experience": {
@@ -43,7 +43,7 @@ const ROUTES: Record<string, PageSeo> = {
   "/skills": {
     title: "Skills | Damir Kranjcevic",
     description:
-      "Languages, frontend and backend frameworks, databases, AI/LLM tooling, DevOps, auth, payments, and system administration — skills overview.",
+      "Skills overview: languages, frontend and backend frameworks, databases, AI/LLM tooling, DevOps, auth, payments, and system administration.",
     path: "/skills",
   },
   "/education": {
@@ -54,7 +54,7 @@ const ROUTES: Record<string, PageSeo> = {
   "/contact": {
     title: "Contact | Damir Kranjcevic",
     description:
-      "Get in touch with Damir Kranjcevic for full-stack, AI engineering, or collaboration opportunities — contact form and links.",
+      "Get in touch with Damir Kranjcevic about full-stack or AI engineering work. Contact form and links.",
     path: "/contact",
   },
 };

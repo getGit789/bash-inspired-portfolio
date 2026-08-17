@@ -78,7 +78,7 @@ const Skills = () => {
       icon: Lock,
       skills: [
         "Clerk",
-        "Lemon Squeezy",
+        "Stripe",
         "OAuth",
         "Webhook verification",
       ],
@@ -117,7 +117,7 @@ const Skills = () => {
               Technical Skills
             </h1>
             <p className="text-terminal-light/80 max-w-2xl mx-auto">
-              The stack I use daily to ship production SaaS — plus the system
+              The stack I use daily to ship production SaaS, plus the system
               administration background that keeps my production boxes healthy.
             </p>
           </div>

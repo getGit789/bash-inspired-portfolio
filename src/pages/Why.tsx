@@ -45,10 +45,10 @@ const Why = () => {
                   <h2 className="text-2xl font-bold text-terminal-light mb-3">Passion for Technology</h2>
                 </div>
                 <p className="mb-4">
-                  Technology isn't just a career for me—it's a <span className="text-terminal-accent">calling</span>. Every line of code, every system I build, every problem I solve brings me genuine joy. There's something magical about turning an idea into reality, watching abstract concepts become tangible solutions.
+                  I like this work more than is probably reasonable. Building a system, fixing a stubborn bug, watching an idea turn into something that runs: that part has never gotten old for me. Technology is a <span className="text-terminal-accent">career</span>, sure, but I would be doing some version of it anyway.
                 </p>
                 <p className="mb-4">
-                  This portfolio isn't just a showcase of my work; it's a reflection of my journey. Each project represents hours of learning, debugging, and iterating. They're not just applications—they're stories of growth, challenges overcome, and knowledge gained.
+                  This site is a record of that. Each project here cost real hours of learning, debugging, and going back to fix what I got wrong the first time.
                 </p>
               </section>
 
@@ -59,13 +59,13 @@ const Why = () => {
                   <h2 className="text-2xl font-bold text-terminal-light mb-3">Continuous Learning</h2>
                 </div>
                 <p className="mb-4">
-                  The tech industry moves fast. What's cutting-edge today might be obsolete tomorrow. I've learned that the only way to stay relevant is to <span className="text-terminal-accent">never stop learning</span>. This portfolio is my way of documenting that journey.
+                  The industry moves fast, and what is current today can be dated in a year. The only answer I have found is to <span className="text-terminal-accent">keep learning</span>, and this site is where I write that down.
                 </p>
                 <p className="mb-4">
-                  From building my HomeLab Kubernetes cluster to exploring AI and local LLMs, every project teaches me something new. I'm not just building for the sake of building—I'm building to <span className="text-terminal-accent">understand</span>, to <span className="text-terminal-accent">grow</span>, and to <span className="text-terminal-accent">evolve</span>.
+                  The HomeLab Kubernetes cluster taught me one set of things, working with AI and local LLMs taught me another. I build in order to <span className="text-terminal-accent">understand</span> how something works, not to have another repo.
                 </p>
                 <p className="mb-4">
-                  The terminal aesthetic of this site isn't just a design choice—it's a nod to where it all begins. The command line, the foundation of everything we build. It's raw, powerful, and honest. Just like the journey of learning.
+                  The terminal look of this site is a nod to where most of my day happens. The command line is plain and does not hide anything, and I like that.
                 </p>
               </section>
 
@@ -76,13 +76,13 @@ const Why = () => {
                   <h2 className="text-2xl font-bold text-terminal-light mb-3">Building Real Solutions</h2>
                 </div>
                 <p className="mb-4">
-                  I don't just want to code—I want to <span className="text-terminal-accent">solve problems</span>. Whether it's creating a Python interpreter for online learning, building a reverse transformation tool, or setting up infrastructure that actually works, I'm driven by the impact.
+                  I want to <span className="text-terminal-accent">solve problems</span>, not just write code. An online Python interpreter for learners, a text and image reverser, infrastructure that stays up: the point in each case was that someone could use it.
                 </p>
                 <p className="mb-4">
-                  My HomeLab project isn't just about running Kubernetes—it's about understanding distributed systems, networking, security, and infrastructure at a fundamental level. It's about building something real, something that teaches me how the internet actually works.
+                  The HomeLab is not really about Kubernetes. It is about understanding distributed systems, networking, and security from the bottom up, on hardware I can break and fix myself.
                 </p>
                 <p className="mb-4">
-                  Every project on this site serves a purpose. They're not just portfolio pieces—they're <span className="text-terminal-accent">proof of concept</span>, demonstrations of skills, and stepping stones to bigger challenges.
+                  Every project here had a purpose when I built it. Some were <span className="text-terminal-accent">proofs of concept</span>, some were practice, and a few led directly to bigger work.
                 </p>
               </section>
 
@@ -93,13 +93,13 @@ const Why = () => {
                   <h2 className="text-2xl font-bold text-terminal-light mb-3">Sharing Knowledge</h2>
                 </div>
                 <p className="mb-4">
-                  I believe in <span className="text-terminal-accent">open knowledge</span>. The tech community has given me so much—tutorials, documentation, open-source projects, and countless hours of help from strangers. This portfolio is my way of giving back.
+                  I got most of what I know from <span className="text-terminal-accent">other people's work</span>: tutorials, documentation, open source, and strangers answering questions online. Publishing my own is the least I can do in return.
                 </p>
                 <p className="mb-4">
-                  By sharing my projects, my learning journey, and my experiences, I hope to inspire others. Maybe someone will see my HomeLab setup and decide to build their own. Maybe they'll look at my code and learn something new. Maybe they'll see that it's okay to be a perpetual learner.
+                  Maybe someone sees the HomeLab setup and builds their own. Maybe someone reads the code and picks something up. Either would be a good outcome.
                 </p>
                 <p className="mb-4">
-                  This isn't about showing off—it's about <span className="text-terminal-accent">transparency</span>. The real journey of a developer isn't just the successes; it's the failures, the debugging sessions, the "why isn't this working?" moments. And I'm not afraid to show that.
+                  It is also about being <span className="text-terminal-accent">honest</span> about the process. The debugging sessions and the "why isn't this working?" evenings are most of the job, and I would rather show that than a highlight reel.
                 </p>
               </section>
 
@@ -110,13 +110,13 @@ const Why = () => {
                   <h2 className="text-2xl font-bold text-terminal-light mb-3">The Future</h2>
                 </div>
                 <p className="mb-4">
-                  Technology is evolving at an unprecedented pace. AI is reshaping how we work, cloud infrastructure is becoming more complex, and security is more critical than ever. I want to be part of that evolution, not just a spectator.
+                  AI is changing how we work, cloud infrastructure keeps getting more complicated, and security matters more every year. I want to be working on that, not watching it.
                 </p>
                 <p className="mb-4">
-                  My current focus on AI development, Kubernetes, and cybersecurity isn't random—it's strategic. These are the skills that will define the next decade of technology. By learning them now, by building with them now, I'm preparing for what's next.
+                  That is why my current focus is AI development, Kubernetes, and cybersecurity. I think those three will shape the next decade, and I would rather learn them by building now than catch up later.
                 </p>
                 <p className="mb-4">
-                  This portfolio will continue to evolve. New projects will be added, old ones will be updated, and the journey will continue. Because that's what this is—a <span className="text-terminal-accent">living document</span> of growth, not a static snapshot.
+                  This site will keep changing. New projects go in, old ones get updated or retired. It is a <span className="text-terminal-accent">living document</span>, not a snapshot.
                 </p>
               </section>
 
@@ -127,13 +127,13 @@ const Why = () => {
                   <div>
                     <h2 className="text-2xl font-bold text-terminal-light mb-3">The Bottom Line</h2>
                     <p className="mb-4">
-                      I'm building this because I <span className="text-terminal-accent">love</span> what I do. Because I believe in continuous learning. Because I want to solve real problems and build real solutions. Because I want to share my journey and learn from others.
+                      I build because I <span className="text-terminal-accent">enjoy</span> it, because I want to keep learning, and because I want to work on real problems with real people using the result.
                     </p>
                     <p className="mb-4">
-                      This portfolio is more than a resume—it's a <span className="text-terminal-accent">statement</span>. It says: "I'm here, I'm learning, I'm building, and I'm not stopping."
+                      This portfolio is my <span className="text-terminal-accent">resume</span>, with the working parts left visible.
                     </p>
                     <p className="text-terminal-accent font-semibold">
-                      {'>'} Let's build something amazing together.
+                      {'>'} Let's build something together.
                     </p>
                   </div>
                 </div>
