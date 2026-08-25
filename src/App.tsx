@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import Why from "./pages/Why";
 import Projects from "./pages/Projects";
@@ -21,7 +21,8 @@ const queryClient = new QueryClient();
 // Initialize GA with your measurement ID
 const MEASUREMENT_ID = "G-KFMK31JPN2"; // Portfolio Website GA4 ID
 
-function App() {
+/** Everything except the router, so scripts/prerender.mjs can wrap it in a StaticRouter. */
+export function AppShell() {
   useEffect(() => {
     initGA(MEASUREMENT_ID);
   }, []);
@@ -31,22 +32,28 @@ function App() {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <Router>
-          <RouteTracker />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/why" element={<Why />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/experience" element={<Experience />} />
-            <Route path="/certifications" element={<Certifications />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/education" element={<Education />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Router>
+        <RouteTracker />
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/why" element={<Why />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/certifications" element={<Certifications />} />
+          <Route path="/skills" element={<Skills />} />
+          <Route path="/education" element={<Education />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </TooltipProvider>
     </QueryClientProvider>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppShell />
+    </BrowserRouter>
   );
 }
 

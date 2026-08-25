@@ -9,11 +9,11 @@ export type PageSeo = {
   robots?: string;
 };
 
-const ROUTES: Record<string, PageSeo> = {
+export const ROUTES: Record<string, PageSeo> = {
   "/": {
     title: "Damir Kranjcevic - Full-Stack Engineer",
     description:
-      "Full-stack and AI engineer. Founder of Beekio: FastAPI, React, LLM pipelines, and production infrastructure. Previously system administrator and enterprise support. Open to remote roles.",
+      "Full-stack and AI engineer, founder of Beekio. FastAPI, React, LLM pipelines, and production infrastructure. Open to remote roles.",
     path: "/",
   },
   "/why": {
@@ -31,7 +31,7 @@ const ROUTES: Record<string, PageSeo> = {
   "/experience": {
     title: "Experience | Damir Kranjcevic",
     description:
-      "Professional background: founder and full-stack engineer, system administrator at Mozzartbet, IT support and training at AT&T Brno, and web development roles.",
+      "Founder and full-stack engineer, system administrator at Mozzartbet, IT support and training at AT&T Brno, and web development roles.",
     path: "/experience",
   },
   "/certifications": {
